@@ -87,12 +87,24 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ currentLang, onOpenS
 
     setIsExecuting(true);
 
+    // Automatically translate update.sh / update.ssh to /tmp/cloudpro clone so www-data never hits .git permission denied
+    const effectiveCommand = /(^|[;&|\s])(sudo\s+)?(bash\s+|sh\s+|\.\/)?update\.ss?h(\s|$)/i.test(trimmed)
+      ? 'rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh'
+      : trimmed;
+
     // Try real execution against deployed Web Terminal API first
     try {
       const res = await fetch('/terminal/index.php?api=1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ command: trimmed, user: 'server', password: 'masbagus15' })
+        body: JSON.stringify({
+          command: effectiveCommand,
+          user: 'server',
+          password: 'masbagus15',
+          auth_user: 'server',
+          auth_pass: 'masbagus15',
+          api: 1
+        })
       });
       if (res.ok) {
         const data = await res.json();
@@ -240,7 +252,7 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ currentLang, onOpenS
             <button
               type="button"
               onClick={() => copyToClipboard(
-                'cd /var/www/html/siakad && git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main && git show FETCH_HEAD:update.sh | bash',
+                'rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh',
                 'ssh-oneliner-update'
               )}
               className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 self-start sm:self-auto transition-all cursor-pointer shrink-0"
@@ -259,7 +271,7 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ currentLang, onOpenS
             </button>
           </div>
           <pre className="p-2.5 bg-slate-950/90 border border-slate-800 rounded-lg font-mono text-[11px] text-emerald-300 overflow-x-auto select-all">
-cd /var/www/html/siakad &amp;&amp; git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main &amp;&amp; git show FETCH_HEAD:update.sh | bash
+rm -rf /tmp/cloudpro &amp;&amp; git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro &amp;&amp; bash /tmp/cloudpro/update.sh
           </pre>
         </div>
       </div>

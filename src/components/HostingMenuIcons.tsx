@@ -124,7 +124,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     title: 'Manajemen Node & Virtualisasi VPS',
     resellerTitle: 'Manajemen Instance VPS Klien',
     description: 'Pusat kendali terisolasi untuk cluster node server, mesin virtual KVM/LXC, manajemen container Docker, dan migrasi sistem.',
-    badge: 'KVM Engine',
     allowedRoles: ['root', 'reseller']
   },
 
@@ -137,7 +136,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     title: 'Manajemen Akun Hosting (WHM)',
     resellerTitle: 'Manajemen Akun Klien Hosting',
     description: 'Sistem administrasi akun cPanel terisolasi, alokasi paket penyimpanan NVMe, manajemen status layanan, dan akses panel klien.',
-    badge: 'Hosting Engine',
     allowedRoles: ['root', 'reseller']
   },
   {
@@ -147,8 +145,7 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'whm_reseller',
     title: 'Manajemen Billing & Lisensi Layanan',
     resellerTitle: 'Manajemen Tagihan Pelanggan',
-    description: 'Sistem faktur berlangganan hosting dan VPS, katalog harga paket komersial, serta integrasi gerbang pembayaran QRIS dan Virtual Account.',
-    badge: 'Billing Suite',
+    description: 'Sistem faktur berlangganan hosting dan VPS, katalog harga paket komersial, serta integrasi gerbang pembayaran otomatis.',
     allowedRoles: ['root', 'reseller']
   },
   {
@@ -158,7 +155,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'whm_reseller',
     title: 'Identitas Brand White-Label',
     description: 'Konfigurasi profil perusahaan penyedia layanan, logo resmi organisasi, serta tata warna khusus pada portal pelanggan.',
-    badge: 'White-Label',
     allowedRoles: ['root', 'reseller']
   },
   {
@@ -167,7 +163,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'whm_reseller',
     title: 'Manajemen Peran & Akses (RBAC)',
     description: 'Pengaturan tingkat otoritas akses antara Administrator Utama (Root), Mitra Reseller WHM, dan Pengguna Akhir cPanel.',
-    badge: 'Multi-Role',
     allowedRoles: ['root', 'reseller', 'client']
   },
 
@@ -181,7 +176,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     clientTitle: 'Domain & Situs Web',
     resellerTitle: 'Domain & Situs Klien',
     description: 'Administrasi domain aktif, pemetaan direktori virtual host, pemantauan trafik bulanan, dan status enkripsi HTTPS.',
-    badge: 'Virtual Host',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
@@ -190,7 +184,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'domains_network',
     title: 'Katalog Instalasi Aplikasi Web',
     description: 'Pustaka penyediaan otomatis untuk CMS WordPress, framework Laravel, Node.js, SIAKAD/RDM, dan integrasi repositori Git.',
-    badge: 'App Catalog',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
@@ -200,7 +193,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'domains_network',
     title: 'Cloudflare Zero Trust Ingress',
     description: 'Arsitektur publikasi jaringan terenkripsi ke jaringan edge global tanpa kebutuhan IP publik statis maupun pembukaan port router.',
-    badge: 'Zero Trust',
     allowedRoles: ['root']
   },
   {
@@ -210,7 +202,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'domains_network',
     title: 'Nameserver WHM & Editor Zona DNS',
     description: 'Konfigurasi nameserver otoritatif (NS1–NS4), catatan Glue IP, rekaman A/CNAME/MX/TXT, manajemen subdomain, dan autentikasi DKIM/SPF.',
-    badge: 'DNS Studio',
     allowedRoles: ['root', 'reseller', 'client']
   },
 
@@ -223,7 +214,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     title: 'Manajer Berkas & Editor Kode',
     clientTitle: 'Manajer Berkas Direktori Web',
     description: 'Sistem manajemen berkas direktori publik, ekstraksi arsip ZIP, pengaturan izin akses berkas, dan penyuntingan kode sumber.',
-    badge: 'File Explorer',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
@@ -234,7 +224,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     title: 'Layanan Email Bisnis & Akun FTP',
     clientTitle: 'Kotak Surat Email & Akses FTP',
     description: 'Administrasi akun email domain, antarmuka Roundcube Webmail, penerusan pesan, akun transfer Pure-FTPd, dan proteksi direktori.',
-    badge: 'Mail & FTP',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
@@ -245,7 +234,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     title: 'Pusat Cadangan & Pemulihan Data',
     clientTitle: 'Cadangan Situs & Basis Data',
     description: 'Manajemen salinan cadangan terjadwal untuk basis data dan berkas aplikasi ke penyimpanan objek S3 maupun array NVMe lokal.',
-    badge: 'Backup Vault',
     allowedRoles: ['root', 'reseller', 'client']
   },
 
@@ -259,7 +247,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     clientTitle: 'Basis Data MySQL & phpMyAdmin',
     resellerTitle: 'Basis Data Pelanggan',
     description: 'Pengelolaan cluster basis data terpusat, otorisasi hak akses pengguna SQL, serta antarmuka eksekusi kueri interaktif.',
-    badge: 'SQL Cluster',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
@@ -269,7 +256,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'databases_software',
     title: 'Manajer MultiPHP & Modul Ekstensi',
     description: 'Konfigurasi runtime PHP (7.4–8.4), dekoder ionCube Loader, SourceGuardian, pustaka cURL, GD, Imagick, Zip, Intl, serta parameter php.ini.',
-    badge: 'PHP · ionCube',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
@@ -279,7 +265,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'databases_software',
     title: 'Arsitektur Nginx & Reverse Proxy',
     description: 'Manajemen konfigurasi blok server Nginx, soket FastCGI PHP-FPM, serta pengaturan penyeimbang beban trafik web.',
-    badge: 'Nginx Engine',
     allowedRoles: ['root']
   },
 
@@ -291,7 +276,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'security_monitoring',
     title: 'Sertifikat SSL/TLS & Firewall UFW',
     description: 'Manajemen sertifikat keamanan AutoSSL Let’s Encrypt, otoritas Origin CA, aturan penyaringan port jaringan, dan mitigasi ancaman.',
-    badge: 'SSL & WAF',
     allowedRoles: ['root']
   },
   {
@@ -301,7 +285,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'security_monitoring',
     title: 'Log Analitik & Audit Aktivitas',
     description: 'Pemantauan rekaman akses trafik web, diagnostik kesalahan layanan, replikasi basis data, serta jejak audit operasional sistem.',
-    badge: 'Audit Log',
     allowedRoles: ['root']
   },
 
@@ -313,7 +296,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'system_automation',
     title: 'Konsol Terminal SSH Terpadu',
     description: 'Antarmuka interaksi baris perintah sistem operasi secara langsung melalui peramban web serta dokumentasi koneksi klien SSH.',
-    badge: 'SSH Console',
     allowedRoles: ['root']
   },
   {
@@ -323,7 +305,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'system_automation',
     title: 'Penjadwal Tugas Otomatis (Cron)',
     description: 'Manajemen penjadwalan otomatisasi tugas sistem untuk pencadangan berkala, pemeliharaan indeks, dan pembersihan berkas sementara.',
-    badge: 'Scheduler',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
@@ -332,7 +313,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'system_automation',
     title: 'Pembaruan & Sinkronisasi Sistem',
     description: 'Manajemen rilis versi panel kontrol dan sinkronisasi distribusi pembaruan sistem dari repositori pusat ke server produksi.',
-    badge: 'System Sync',
     allowedRoles: ['root']
   },
   {
@@ -341,7 +321,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'system_automation',
     title: 'Personalisasi Tema Antarmuka',
     description: 'Pengaturan profil visual antarmuka panel kontrol dengan pilihan mode terang profesional maupun mode gelap klasik.',
-    badge: '8 Tema',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
@@ -351,7 +330,6 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     category: 'system_automation',
     title: 'Pusat Telemetri & Performa',
     description: 'Pemantauan indikator kinerja prosesor EPYC, alokasi memori ECC, utilisasi penyimpanan NVMe, dan kesehatan daemon.',
-    badge: 'Telemetry',
     allowedRoles: ['root', 'reseller', 'client']
   }
 ];

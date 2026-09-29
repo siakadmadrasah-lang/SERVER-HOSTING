@@ -153,7 +153,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     if (item.id === 'databases') return `${databases.length} DB`;
     if (item.id === 'whm_accounts') return `${accountsCount} Akun`;
     if (item.id === 'tunnel') return `${tunnelRoutesCount} Rute`;
-    return item.badge || null;
+    return null;
   };
 
   const getDisplayTitle = (item: HostingMenuItemMeta): string => {

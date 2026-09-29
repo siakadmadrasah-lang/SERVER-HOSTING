@@ -67,7 +67,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
     category: HostingCategoryKey;
     label: string;
     count?: number;
-    badge?: string;
   }[] = [
     { 
       id: 'dashboard', 
@@ -84,14 +83,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       id: 'tunnel', 
       category: 'domains_network',
       label: t.nav.tunnel, 
-      count: tunnelRoutesCount, 
-      badge: 'Zero-IP' 
+      count: tunnelRoutesCount
     },
     { 
       id: 'dns_network', 
       category: 'domains_network',
-      label: 'Nameserver & DNS Zone',
-      badge: 'NS1/2'
+      label: 'Nameserver & DNS Zone'
     },
     { 
       id: 'files', 
@@ -101,8 +98,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { 
       id: 'email_ftp', 
       category: 'files_storage',
-      label: 'Email, Webmail & FTP',
-      badge: 'cPanel'
+      label: 'Email, Webmail & FTP'
     },
     { 
       id: 'backups', 
@@ -118,8 +114,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { 
       id: 'php_settings', 
       category: 'databases_software',
-      label: 'MultiPHP & ionCube', 
-      badge: 'cURL+8.3' 
+      label: 'MultiPHP & Ekstensi'
     },
     { 
       id: 'vhosts', 
@@ -129,8 +124,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { 
       id: 'vps_cluster', 
       category: 'vps_infrastructure',
-      label: 'Node & Virtualisasi VPS', 
-      badge: 'KVM' 
+      label: 'Node & Virtualisasi VPS'
     },
     { 
       id: 'whm_accounts', 
@@ -141,14 +135,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { 
       id: 'billing_whmcs', 
       category: 'whm_reseller',
-      label: 'Manajemen Billing', 
-      badge: 'QRIS' 
+      label: 'Manajemen Billing'
     },
     { 
       id: 'reseller_branding', 
       category: 'whm_reseller',
-      label: 'Identitas White-Label', 
-      badge: 'Brand' 
+      label: 'Identitas White-Label'
     },
     { 
       id: 'security', 
@@ -168,7 +160,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { 
       id: 'cron_jobs', 
       category: 'system_automation',
-      label: 'Cron Jobs & Otomasi'
+      label: 'Penjadwal Tugas (Cron)'
     }
   ];
 
@@ -247,20 +239,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
                               className="group-hover:scale-105 transition-transform" 
                             />
                             <span className="truncate font-semibold">{item.label}</span>
-                          </div>
-                          <div className="flex items-center gap-1 shrink-0">
-                            {item.badge && (
-                              <span className="text-[10px] font-mono text-amber-400">
-                                {item.badge}
-                              </span>
-                            )}
-                            {item.count !== undefined && item.count > 0 && (
-                              <span className={`text-[11px] font-mono tabular-nums px-1.5 py-0.5 rounded ${
-                                isActive ? 'bg-sky-600/40 text-sky-200' : 'bg-slate-800 text-slate-400'
-                              }`}>
-                                {item.count}
-                              </span>
-                            )}
                           </div>
                         </button>
                       );

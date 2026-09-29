@@ -1,0 +1,8 @@
+#!/bin/bash
+# Alias untuk update.sh apabila pengguna mengetik ./update.ssh atau bash update.ssh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" 2>/dev/null)" 2>/dev/null && pwd)"
+if [ -f "$SCRIPT_DIR/update.sh" ]; then
+  exec bash "$SCRIPT_DIR/update.sh" "$@"
+else
+  rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && exec bash /tmp/cloudpro/update.sh "$@"
+fi

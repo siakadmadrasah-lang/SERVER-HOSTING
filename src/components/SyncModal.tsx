@@ -81,21 +81,36 @@ export const SyncModal: React.FC<SyncModalProps> = ({
       '🔑 Mengatur token autentikasi GitHub (siakadmadrasah-lang/SERVER-VPS)...'
     ]);
 
-    try {
-      // Coba kirimkan perintah eksekusi ke API terminal server lokal jika tersedia
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 6000);
+    const syncCmd = 'rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh';
 
-      const res = await fetch('/api/terminal.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          command: 'cd /var/www/html/siakad && git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main && git show FETCH_HEAD:update.sh | bash',
-          user: 'server',
-          password: 'masbagus15'
+    try {
+      // Kirimkan perintah eksekusi ke Web Terminal API & endpoint /api/terminal.php secara paralel
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 45000);
+
+      const payload = JSON.stringify({
+        command: syncCmd,
+        user: 'server',
+        password: 'masbagus15',
+        auth_user: 'server',
+        auth_pass: 'masbagus15',
+        api: 1
+      });
+
+      await Promise.any([
+        fetch('/terminal/index.php?api=1', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          signal: controller.signal
         }),
-        signal: controller.signal
-      }).catch(() => null);
+        fetch('/api/terminal.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          signal: controller.signal
+        })
+      ]).catch(() => null);
 
       clearTimeout(timeoutId);
 
@@ -307,7 +322,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
                 <span>Skrip Sinkronisasi Rilis Produksi</span>
               </span>
               <button
-                onClick={() => copyToClipboard('cd /var/www/html/siakad && git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main && git show FETCH_HEAD:update.sh | bash', 'cmd1')}
+                onClick={() => copyToClipboard('rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh', 'cmd1')}
                 className="text-[11px] text-sky-400 hover:text-sky-300 flex items-center gap-1 px-2 py-0.5 bg-slate-900 rounded border border-slate-800"
               >
                 {copiedCmd === 'cmd1' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
@@ -315,7 +330,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
               </button>
             </div>
             <code className="block p-2 bg-slate-900 border border-slate-800 rounded font-mono text-[11px] text-emerald-400 select-all break-all">
-              cd /var/www/html/siakad &amp;&amp; git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main &amp;&amp; git show FETCH_HEAD:update.sh | bash
+              rm -rf /tmp/cloudpro &amp;&amp; git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro &amp;&amp; bash /tmp/cloudpro/update.sh
             </code>
             <p className="text-[10px] text-slate-500">
               Kompatibel pada antarmuka Konsol Web maupun klien SSH eksternal.
