@@ -167,10 +167,10 @@ if [ "$SRC_DIR" != "/tmp/cloudpro" ]; then
 fi
 
 echo "=========================================================="
-echo "✅ PEMBARUAN BERHASIL 100%! Cloud PRO v4.0 Telah Aktif!"
-echo "   👉 Label merah/badge di kanan menu telah dihapus bersih"
-echo "   👉 Modul VPS & Hosting terisolasi + Login Admin Ramping"
-echo "   👉 Web Terminal & update.sh / update.ssh telah diperbaiki"
+echo "✅ PEMBARUAN BERHASIL 100%! Cloud PRO & CloudPanel v4.1 Aktif!"
+echo "   👉 WHM diganti Cloud PRO & cPanel diganti CloudPanel"
+echo "   👉 Login Terpadu: Root Admin, Mitra Reseller & Klien CloudPanel"
+echo "   👉 Web Terminal & update.sh / update.ssh siap digunakan"
 echo "   👉 Silakan muat ulang browser Anda (Refresh / Tarik Layar)"
 echo "=========================================================="
 exit 0

@@ -202,6 +202,7 @@ export interface CloudflareTunnelStatus {
 export interface HostingAccount {
   id: string;
   username: string;
+  password?: string;
   domain: string;
   ownerEmail: string;
   packageName: string;

@@ -28,7 +28,7 @@ interface HeaderProps {
   onToggleMobileNav?: () => void;
   isMobileNavOpen?: boolean;
   currentUser: CurrentSessionUser;
-  onOpenRoleSwitcher: () => void;
+  onOpenRoleSwitcher?: () => void;
   currentTheme?: ThemeId;
   onOpenThemeSwitcher?: () => void;
   onLogout?: () => void;

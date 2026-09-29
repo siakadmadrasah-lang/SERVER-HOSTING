@@ -124,6 +124,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
     const newAcc: HostingAccount = {
       id: `acc-${Date.now()}`,
       username: newUsername.trim().toLowerCase(),
+      password: newPassword.trim() || 'klien123',
       domain: newDomain.trim().toLowerCase(),
       ownerEmail: newEmail.trim() || `admin@${newDomain.trim()}`,
       packageName: pkg.name,
@@ -313,7 +314,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                       <span className="truncate">{acc.domain}</span>
                     </div>
                     <div className="text-[11px] text-slate-400 font-mono mt-0.5 truncate">
-                      user: <span className="text-indigo-300 font-semibold">{acc.username}</span> · {acc.packageName}
+                      user: <span className="text-indigo-300 font-semibold">{acc.username}</span> · pass: <span className="text-amber-300">{acc.password || 'klien123'}</span> · {acc.accountType === 'reseller' ? 'Reseller' : 'CloudPanel'}
                     </div>
                   </div>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-mono shrink-0 ${
@@ -444,7 +445,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                         <span>{acc.domain}</span>
                       </div>
                       <div className="text-[11px] text-slate-400 font-mono mt-0.5">
-                        user: <span className="text-indigo-300 font-semibold">{acc.username}</span> · <span className="text-slate-500">{acc.ownerEmail}</span>
+                        user: <span className="text-indigo-300 font-semibold">{acc.username}</span> · pass: <span className="text-amber-300">{acc.password || 'klien123'}</span> · <span className="text-slate-500">{acc.accountType === 'reseller' ? 'Reseller Cloud PRO' : 'Klien CloudPanel'}</span>
                       </div>
                     </td>
                     <td className="px-4 py-3 text-slate-300 text-[11px]">

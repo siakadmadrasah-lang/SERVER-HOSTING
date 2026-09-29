@@ -75,15 +75,29 @@ import {
 import { CheckCircle2 } from 'lucide-react';
 
 const OWNER_AUTH_KEY = 'cloudpro_owner_auth_v1';
+const AUTH_ROLE_KEY = 'cloudpro_auth_role_v1';
 
 export default function App() {
-  // Owner authentication state (username: denbaguse / pass: masbagus15)
+  // Multi-role authentication state (Root Admin, Reseller, or CloudPanel Client)
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     try {
-      return localStorage.getItem(OWNER_AUTH_KEY) === 'authenticated_denbaguse';
+      const val = localStorage.getItem(OWNER_AUTH_KEY);
+      return Boolean(val && val.startsWith('authenticated_'));
     } catch {
       return false;
     }
+  });
+
+  const [authenticatedRole, setAuthenticatedRole] = useState<'root' | 'reseller' | 'client'>(() => {
+    try {
+      const savedRole = localStorage.getItem(AUTH_ROLE_KEY);
+      if (savedRole === 'reseller' || savedRole === 'client' || savedRole === 'root') {
+        return savedRole;
+      }
+    } catch {
+      // ignore
+    }
+    return 'root';
   });
 
   const [currentLang, setCurrentLang] = useState<Language>('id');
@@ -131,27 +145,34 @@ export default function App() {
     saveStorage('aethel_session_user', currentUser);
   }, [currentUser]);
 
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (loggedInUser: CurrentSessionUser) => {
     try {
-      localStorage.setItem(OWNER_AUTH_KEY, 'authenticated_denbaguse');
+      localStorage.setItem(OWNER_AUTH_KEY, `authenticated_${loggedInUser.username}`);
+      localStorage.setItem(AUTH_ROLE_KEY, loggedInUser.role);
     } catch {
       // ignore
     }
     setIsAuthenticated(true);
-    setCurrentUser(DEFAULT_ROOT_USER);
+    setAuthenticatedRole(loggedInUser.role);
+    setCurrentUser(loggedInUser);
     setActiveTab('dashboard');
-    showToast('Selamat datang kembali, Pemilik Server (@denbaguse)!', 'success');
+    showToast(
+      `Selamat datang di ${loggedInUser.role === 'client' ? 'CloudPanel' : 'Cloud PRO'}, @${loggedInUser.username} (${ROLE_CONFIG[loggedInUser.role].label})!`,
+      'success'
+    );
   };
 
   const handleLogout = () => {
     try {
       localStorage.removeItem(OWNER_AUTH_KEY);
+      localStorage.removeItem(AUTH_ROLE_KEY);
     } catch {
       // ignore
     }
     setIsAuthenticated(false);
+    setAuthenticatedRole('root');
     setCurrentUser(DEFAULT_ROOT_USER);
-    showToast('Sesi pemilik server telah dikunci (Logout berhasil).', 'info');
+    showToast('Sesi akun telah dikunci (Logout berhasil).', 'info');
   };
 
   const handleSwitchUser = (newUser: CurrentSessionUser) => {
@@ -468,7 +489,7 @@ export default function App() {
     }
   };
 
-  // If not logged in as the server owner (denbaguse / masbagus15), render LoginView
+  // If not logged in, render LoginView (supports Root Admin, Reseller, and CloudPanel Client accounts)
   if (!isAuthenticated) {
     return (
       <>
@@ -476,6 +497,7 @@ export default function App() {
           onLoginSuccess={handleLoginSuccess}
           currentTheme={currentTheme}
           onSelectTheme={handleSelectTheme}
+          hostingAccounts={hostingAccounts}
         />
         {toastMessage && (
           <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg shadow-xl text-xs text-white animate-in slide-in-from-bottom-3 duration-200">
@@ -494,8 +516,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-sky-500 selection:text-white">
-      {/* Simulation Banner when not in Root Super Admin role */}
-      {currentUser.role !== 'root' && (
+      {/* Simulation Banner ONLY when Root Super Admin is simulating a Reseller or Client role */}
+      {authenticatedRole === 'root' && currentUser.role !== 'root' && (
         <div className="bg-gradient-to-r from-amber-600 via-amber-700 to-amber-600 text-white text-xs px-3 sm:px-6 py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 z-40 sticky top-0 shadow-md">
           <div className="flex items-center gap-2">
             <span className="px-1.5 py-0.5 rounded bg-black/30 font-bold uppercase text-[10px] tracking-wider shrink-0">
@@ -525,7 +547,7 @@ export default function App() {
         onToggleMobileNav={() => setIsMobileNavOpen(prev => !prev)}
         isMobileNavOpen={isMobileNavOpen}
         currentUser={currentUser}
-        onOpenRoleSwitcher={() => setIsRoleSwitcherOpen(true)}
+        onOpenRoleSwitcher={authenticatedRole === 'root' ? () => setIsRoleSwitcherOpen(true) : undefined}
         currentTheme={currentTheme}
         onOpenThemeSwitcher={() => setIsThemeSwitcherOpen(true)}
         onLogout={handleLogout}
@@ -549,7 +571,7 @@ export default function App() {
           onOpenSyncModal={currentUser.role === 'root' ? () => setIsSyncModalOpen(true) : undefined}
           onLanguageChange={setCurrentLang}
           currentUser={currentUser}
-          onOpenRoleSwitcher={() => setIsRoleSwitcherOpen(true)}
+          onOpenRoleSwitcher={authenticatedRole === 'root' ? () => setIsRoleSwitcherOpen(true) : undefined}
           onOpenThemeSwitcher={() => setIsThemeSwitcherOpen(true)}
           onLogout={handleLogout}
         />
