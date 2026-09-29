@@ -1,0 +1,6 @@
+{
+  "name": "Cloud PRO - Manajemen Server Berbasis Cloud",
+  "description": "Cloud PRO - Panel Manajemen Server Berbasis Cloud untuk instalasi website dan sistem manajemen database terpusat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
