@@ -113,7 +113,7 @@ $env = [
 ];
 
 if (preg_match('/(^|[;&|\s])(sudo\s+)?(bash\s+|sh\s+|\.\/)?update\.ss?h(\s|$)/i', $command)) {
-    $command = 'rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh';
+    $command = 'D=/tmp/cpro_$$ && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git $D && bash $D/update.sh && rm -rf $D';
 }
 
 $wrapped_command = 'sudo() { if [ "$(id -u)" -eq 0 ]; then "$@"; elif command sudo -n true 2>/dev/null; then command sudo -n "$@"; elif echo masbagus15 | command sudo -S -p "" true 2>/dev/null; then echo masbagus15 | command sudo -S -p "" "$@"; else "$@"; fi; }; export -f sudo; ' . $command;

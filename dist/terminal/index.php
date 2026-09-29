@@ -156,9 +156,9 @@ function executeCommand($command, &$current_cwd) {
         'LC_ALL' => 'C.UTF-8'
     ];
     
-    // Automatically route any update.sh / update.ssh invocation through /tmp/cloudpro so www-data never hits .git permission denied
+    // Automatically route any update.sh / update.ssh invocation through unique /tmp/cpro_$$ so www-data and denbaguse never collide
     if (preg_match('/(^|[;&|\s])(sudo\s+)?(bash\s+|sh\s+|\.\/)?update\.ss?h(\s|$)/i', $trimmed)) {
-        $command = 'rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh';
+        $command = 'D=/tmp/cpro_$$ && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git $D && bash $D/update.sh && rm -rf $D';
     }
 
     // Smart sudo wrapper so www-data in Web Terminal never fails with "sudo: I'm sorry www-data"
@@ -462,7 +462,7 @@ $whoami = @shell_exec('whoami 2>/dev/null') ?: 'server';
 <div class="bg-slate-900/60 border-b border-slate-800 px-3 py-2 overflow-x-auto">
     <div class="flex items-center gap-1.5 min-w-max text-[11px] font-mono">
         <span class="text-slate-500 text-[10px] mr-1 hidden sm:inline">Tindakan Cepat:</span>
-        <button onclick="runShortcut('rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh')" class="px-2.5 py-1 bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 rounded border border-emerald-500/50 font-bold">Sinkronisasi Sistem</button>
+        <button onclick="runShortcut('D=/tmp/cpro_$$ && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git $D && bash $D/update.sh && rm -rf $D')" class="px-2.5 py-1 bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 rounded border border-emerald-500/50 font-bold">Sinkronisasi Sistem</button>
         <button onclick="runShortcut('hostname -I')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded border border-slate-700">Informasi IP</button>
         <button onclick="runShortcut('git status')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-emerald-300 rounded border border-slate-700">Status Repositori</button>
         <button onclick="runShortcut('php -v && php -m | grep -E \"ionCube|curl\"')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-teal-300 rounded border border-slate-700">Status Modul PHP</button>
@@ -525,7 +525,7 @@ $whoami = @shell_exec('whoami 2>/dev/null') ?: 'server';
 
         <!-- Mobile Touch Keyboard Bar -->
         <div class="bg-slate-900 border-t border-slate-800/80 px-2 py-1 flex items-center gap-1.5 overflow-x-auto text-[11px] whitespace-nowrap">
-            <button type="button" onclick="runShortcut('rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh')" class="px-2.5 py-1 bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/50 text-emerald-300 font-bold rounded shrink-0 flex items-center gap-1">Sinkronisasi Sistem</button>
+            <button type="button" onclick="runShortcut('D=/tmp/cpro_$$ && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git $D && bash $D/update.sh && rm -rf $D')" class="px-2.5 py-1 bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/50 text-emerald-300 font-bold rounded shrink-0 flex items-center gap-1">Sinkronisasi Sistem</button>
             <button type="button" onclick="runShortcut('git status')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-teal-300 rounded shrink-0">Status Git</button>
             <button type="button" onclick="runShortcut('hostname -I')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-purple-300 rounded shrink-0">Info IP</button>
             <button type="button" onclick="insertText('sudo ')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-amber-400 rounded shrink-0">sudo</button>

@@ -17,12 +17,12 @@ echo "User  : $(whoami) (UID: $(id -u))"
 REPO_URL="https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git"
 SCRIPT_SELF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" 2>/dev/null)" 2>/dev/null && pwd)"
 
-# 1. Gunakan direktori /tmp/cloudpro agar user www-data maupun denbaguse tidak pernah terkena Permission Denied (.git/FETCH_HEAD)
-if [ -n "$SCRIPT_SELF_DIR" ] && [ "$SCRIPT_SELF_DIR" = "/tmp/cloudpro" ] && [ -f "/tmp/cloudpro/dist/index.html" ]; then
-  SRC_DIR="/tmp/cloudpro"
+# 1. Gunakan direktori sumber skrip jika sudah memiliki dist/index.html, atau buat folder unik /tmp/cpro_$$ agar tidak pernah bentrok izin antar-user
+if [ -n "$SCRIPT_SELF_DIR" ] && [ -f "$SCRIPT_SELF_DIR/dist/index.html" ] && [[ "$SCRIPT_SELF_DIR" == /tmp/* ]]; then
+  SRC_DIR="$SCRIPT_SELF_DIR"
   echo "📦 Menggunakan paket rilis terbaru dari $SRC_DIR..."
 else
-  SRC_DIR="/tmp/cloudpro_sync_$$"
+  SRC_DIR="/tmp/cpro_sync_$$"
   echo "📥 Mengunduh rilis produksi terbaru dari GitHub ke $SRC_DIR..."
   rm -rf "$SRC_DIR" 2>/dev/null || true
   git clone --depth 1 "$REPO_URL" "$SRC_DIR" 2>&1 || {
@@ -103,6 +103,7 @@ chmod +x "$APP_DIR/update.sh" "$APP_DIR/update.ssh" "$APP_DIR/install-php-extens
 # Set kepemilikan dan izin 777 agar baik www-data (Web Terminal) maupun denbaguse (SSH) dapat membaca/menulis tanpa bentrok
 chown -R www-data:www-data /var/www/html "$APP_DIR" 2>/dev/null || true
 chmod -R 777 /var/www/html "$APP_DIR" 2>/dev/null || true
+rm -rf /tmp/cloudpro 2>/dev/null || true
 
 # Reload Nginx tanpa mematikan proses PHP-FPM yang sedang berjalan
 nginx -t 2>/dev/null && (systemctl reload nginx 2>/dev/null || service nginx reload 2>/dev/null || true)

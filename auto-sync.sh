@@ -20,8 +20,9 @@ fi
 
 if [ -n "$REMOTE_COMMIT" ] && [ "$LOCAL_COMMIT" != "$REMOTE_COMMIT" ]; then
     echo "[$(date)] 🚀 Pembaruan baru terdeteksi di GitHub ($REMOTE_COMMIT). Memulai auto-update..." >> /var/log/cloudpro-sync.log 2>&1
-    rm -rf /tmp/cloudpro 2>/dev/null || true
-    git clone --depth 1 "$REPO_URL" /tmp/cloudpro >> /var/log/cloudpro-sync.log 2>&1 && bash /tmp/cloudpro/update.sh >> /var/log/cloudpro-sync.log 2>&1
+    D="/tmp/cpro_auto_$$"
+    git clone --depth 1 "$REPO_URL" "$D" >> /var/log/cloudpro-sync.log 2>&1 && bash "$D/update.sh" >> /var/log/cloudpro-sync.log 2>&1
+    rm -rf "$D" 2>/dev/null || true
     echo "$REMOTE_COMMIT" > /var/www/html/.cloudpro_commit 2>/dev/null || true
 else
     if command -v systemctl >/dev/null 2>&1; then

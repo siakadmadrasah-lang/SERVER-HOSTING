@@ -87,9 +87,9 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ currentLang, onOpenS
 
     setIsExecuting(true);
 
-    // Automatically translate update.sh / update.ssh to /tmp/cloudpro clone so www-data never hits .git permission denied
+    // Automatically translate update.sh / update.ssh to unique /tmp/cpro_$$ clone so www-data and denbaguse never collide
     const effectiveCommand = /(^|[;&|\s])(sudo\s+)?(bash\s+|sh\s+|\.\/)?update\.ss?h(\s|$)/i.test(trimmed)
-      ? 'rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh'
+      ? 'D=/tmp/cpro_$$ && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git $D && bash $D/update.sh && rm -rf $D'
       : trimmed;
 
     // Try real execution against deployed Web Terminal API first

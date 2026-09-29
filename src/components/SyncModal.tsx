@@ -81,7 +81,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
       '🔑 Mengatur token autentikasi GitHub (siakadmadrasah-lang/SERVER-VPS)...'
     ]);
 
-    const syncCmd = 'rm -rf /tmp/cloudpro && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git /tmp/cloudpro && bash /tmp/cloudpro/update.sh';
+    const syncCmd = 'D=/tmp/cpro_$$ && git clone --depth 1 https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git $D && bash $D/update.sh && rm -rf $D';
 
     try {
       // Kirimkan perintah eksekusi ke Web Terminal API & endpoint /api/terminal.php secara paralel
