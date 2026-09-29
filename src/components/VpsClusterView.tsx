@@ -40,7 +40,7 @@ export interface RemoteServerNode {
   sshPort: number;
   location: string;
   provider: string;
-  nodeRole: 'Master WHM + KVM' | 'Slave Hosting cPanel' | 'KVM Hypervisor Node' | 'DNS Cluster Node';
+  nodeRole: 'Master Cloud PRO + KVM' | 'Slave Hosting CloudPanel' | 'KVM Hypervisor Node' | 'DNS Cluster Node';
   status: 'online' | 'syncing' | 'maintenance';
   cpuCores: number;
   cpuUsage: number;
@@ -95,7 +95,7 @@ const DEFAULT_SERVER_NODES: RemoteServerNode[] = [
     sshPort: 22,
     location: 'Jakarta IIX, Indonesia',
     provider: 'Baremetal NVMe Enterprise',
-    nodeRole: 'Master WHM + KVM',
+    nodeRole: 'Master Cloud PRO + KVM',
     status: 'online',
     cpuCores: 16,
     cpuUsage: 24,
@@ -116,7 +116,7 @@ const DEFAULT_SERVER_NODES: RemoteServerNode[] = [
     sshPort: 22,
     location: 'Singapore (Equinix SG1)',
     provider: 'DigitalOcean / Vultr Cloud',
-    nodeRole: 'Slave Hosting cPanel',
+    nodeRole: 'Slave Hosting CloudPanel',
     status: 'online',
     cpuCores: 8,
     cpuUsage: 31,
@@ -283,7 +283,7 @@ const OS_TEMPLATES = [
   'Ubuntu 24.04 LTS + RDM/ionCube Ready',
   'Ubuntu 22.04 LTS Clean Minimal',
   'Debian 12 Bookworm (KVM Tuned)',
-  'AlmaLinux 9 + cPanel/CyberPanel Ready',
+  'AlmaLinux 9 + CloudPanel/CyberPanel Ready',
   'AlmaLinux 9 + Docker Engine',
   'Windows Server 2022 Datacenter (RDP)'
 ];
@@ -360,7 +360,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
   const [newNodePort, setNewNodePort] = useState('22');
   const [newNodeLocation, setNewNodeLocation] = useState('Jakarta, Indonesia');
   const [newNodeProvider, setNewNodeProvider] = useState('KVM Cloud VPS');
-  const [newNodeRole, setNewNodeRole] = useState<RemoteServerNode['nodeRole']>('Slave Hosting cPanel');
+  const [newNodeRole, setNewNodeRole] = useState<RemoteServerNode['nodeRole']>('Slave Hosting CloudPanel');
   const [testingNodeId, setTestingNodeId] = useState<string | null>(null);
   const [copiedAgentCmd, setCopiedAgentCmd] = useState(false);
 
@@ -582,7 +582,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
               Manajemen Node Server, Hypervisor KVM &amp; Instance VPS
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-              Sistem manajemen infrastruktur VPS yang beroperasi secara terpisah dari akun shared hosting (WHM/cPanel) untuk menjamin stabilitas resource, keamanan jaringan, dan pencegahan konflik data.
+              Sistem manajemen infrastruktur VPS yang beroperasi secara terpisah dari akun shared hosting (Cloud PRO / CloudPanel) untuk menjamin stabilitas resource, keamanan jaringan, dan pencegahan konflik data.
             </p>
           </div>
 
@@ -636,11 +636,11 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
           </div>
 
           <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80">
-            <div className="text-[11px] text-slate-400 font-medium">Docker &amp; Migrasi WHM</div>
+            <div className="text-[11px] text-slate-400 font-medium">Docker &amp; Migrasi Cloud PRO</div>
             <div className="text-lg sm:text-xl font-extrabold text-white mt-0.5 tabular-nums">
               {containers.filter(c => c.status === 'running').length}/{containers.length} Container
             </div>
-            <div className="text-[11px] text-indigo-400 mt-0.5">Rsync + cPanel Importer</div>
+            <div className="text-[11px] text-indigo-400 mt-0.5">Rsync + CloudPanel Importer</div>
           </div>
         </div>
       </div>
@@ -1016,17 +1016,17 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
             </div>
           </div>
 
-          {/* Right 5 cols: WHM / cPanel / VPS Full Migration Wizard */}
+          {/* Right 5 cols: Cloud PRO / CloudPanel / VPS Full Migration Wizard */}
           <div className="lg:col-span-5 rounded-2xl bg-slate-900 border border-slate-800 p-5 space-y-4">
             <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase">
               <ArrowRightLeft className="w-4 h-4" />
-              <span>WHM / cPanel / VPS Transfer Tool</span>
+              <span>Cloud PRO / CloudPanel / VPS Transfer Tool</span>
             </div>
             <h3 className="text-base font-bold text-white">
               Migrasi Otomatis dari Server Lama ke Cloud PRO
             </h3>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Pindahkan akun hosting, seluruh berkas <code className="text-sky-300">public_html</code>, database MySQL, dan zona DNS dari cPanel/WHM, CyberPanel, aaPanel, atau VPS Ubuntu lama melalui protokol Rsync SSH.
+              Pindahkan akun hosting, seluruh berkas <code className="text-sky-300">public_html</code>, database MySQL, dan zona DNS dari CloudPanel/Cloud PRO, CyberPanel, aaPanel, atau VPS Ubuntu lama melalui protokol Rsync SSH.
             </p>
 
             <form onSubmit={handleStartMigration} className="space-y-3 pt-2">
@@ -1039,7 +1039,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
                   onChange={(e) => setSourcePanelType(e.target.value as any)}
                   className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white"
                 >
-                  <option value="cpanel_whm">WHM / cPanel Full Backup (cpmove / SSH)</option>
+                  <option value="cpanel_whm">Cloud PRO / CloudPanel Full Backup (cpmove / SSH)</option>
                   <option value="cyberpanel">CyberPanel / OpenLiteSpeed Server</option>
                   <option value="aaPanel">aaPanel / Pagoda Linux Panel</option>
                   <option value="raw_vps">VPS Ubuntu / Debian Standar (Rsync /var/www)</option>
@@ -1173,9 +1173,9 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
                     onChange={(e) => setNewNodeRole(e.target.value as RemoteServerNode['nodeRole'])}
                     className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white"
                   >
-                    <option value="Slave Hosting cPanel">Slave Hosting cPanel</option>
+                    <option value="Slave Hosting CloudPanel">Slave Hosting CloudPanel</option>
                     <option value="KVM Hypervisor Node">KVM Hypervisor Node (Sewa VPS)</option>
-                    <option value="Master WHM + KVM">Master WHM + KVM</option>
+                    <option value="Master Cloud PRO + KVM">Master Cloud PRO + KVM</option>
                     <option value="DNS Cluster Node">DNS Cluster Nameserver</option>
                   </select>
                 </div>

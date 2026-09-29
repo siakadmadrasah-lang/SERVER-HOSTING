@@ -71,7 +71,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { 
       id: 'dashboard', 
       category: 'system_automation',
-      label: currentUser.role === 'client' ? 'Dasbor cPanel' : (currentUser.role === 'reseller' ? 'Dasbor Reseller' : t.nav.dashboard)
+      label: currentUser.role === 'client' ? 'Dasbor CloudPanel' : (currentUser.role === 'reseller' ? 'Dasbor Reseller' : t.nav.dashboard)
     },
     { 
       id: 'websites', 
@@ -129,7 +129,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { 
       id: 'whm_accounts', 
       category: 'whm_reseller',
-      label: currentUser.role === 'reseller' ? 'Akun Klien Hosting' : 'Manajemen Akun WHM', 
+      label: currentUser.role === 'reseller' ? 'Akun Klien Hosting' : 'Manajemen Akun Cloud PRO', 
       count: accountsCount 
     },
     { 
@@ -174,11 +174,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
     }
   };
 
-  // Order categories so VPS Infrastructure and WHM Hosting are cleanly separated
+  // Order categories so VPS Infrastructure and Cloud PRO Hosting are cleanly separated
   const orderedCategories: { id: HostingCategoryKey; label: string }[] = [
     { id: 'system_automation', label: 'SISTEM INTI & KONSOL' },
     { id: 'vps_infrastructure', label: 'INFRASTRUKTUR VPS & HYPERVISOR' },
-    { id: 'whm_reseller', label: 'MANAJEMEN HOSTING WHM & BILLING' },
+    { id: 'whm_reseller', label: 'MANAJEMEN HOSTING CLOUD PRO & BILLING' },
     { id: 'domains_network', label: 'DOMAIN & JARINGAN CLOUD' },
     { id: 'files_storage', label: 'PENYIMPANAN, EMAIL & CADANGAN' },
     { id: 'databases_software', label: 'BASIS DATA & RUNTIME PHP' },
@@ -191,7 +191,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Top Quick Dashboard Header */}
         <div className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-slate-950/60 border border-slate-800/80 text-[11px] font-semibold text-slate-300">
           <span>
-            {currentUser.role === 'root' ? 'Modul WHM & cPanel' : (currentUser.role === 'reseller' ? 'Menu Reseller WHM' : 'Menu cPanel Klien')}
+            {currentUser.role === 'root' ? 'Modul Cloud PRO & CloudPanel' : (currentUser.role === 'reseller' ? 'Menu Reseller Cloud PRO' : 'Menu CloudPanel Klien')}
           </span>
           <span className="text-[10px] font-mono text-sky-400 tabular-nums">{navItems.length} Menu</span>
         </div>
@@ -368,7 +368,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       <>Cloud <span className="text-sky-400">PRO</span></>
                     )}
                   </h2>
-                  <p className="text-[10px] text-slate-400 font-medium">WHM &amp; cPanel Server Control</p>
+                  <p className="text-[10px] text-slate-400 font-medium">Cloud PRO &amp; CloudPanel Control</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">

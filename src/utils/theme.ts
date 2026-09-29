@@ -54,8 +54,8 @@ export const AVAILABLE_THEMES: ThemeConfig[] = [
   },
   {
     id: 'cpanel-light',
-    name: 'cPanel Jupiter Light',
-    tagline: 'Gaya Resmi Hosting cPanel Putih & Royal Sapphire',
+    name: 'CloudPanel Sapphire Light',
+    tagline: 'Gaya Resmi Hosting CloudPanel Putih & Royal Sapphire',
     mode: 'light',
     primaryColor: '#2563eb',
     accentColor: '#1d4ed8',
@@ -72,8 +72,8 @@ export const AVAILABLE_THEMES: ThemeConfig[] = [
   },
   {
     id: 'whm-light',
-    name: 'WHM Enterprise Light',
-    tagline: 'Putih Bersih & Aksen Oranye Resmi WHM',
+    name: 'Cloud PRO Enterprise Light',
+    tagline: 'Putih Bersih & Aksen Oranye Resmi Cloud PRO',
     mode: 'light',
     primaryColor: '#ea580c',
     accentColor: '#c2410c',
@@ -126,7 +126,7 @@ export const AVAILABLE_THEMES: ThemeConfig[] = [
   },
   {
     id: 'cpanel-jupiter',
-    name: 'cPanel Midnight (Dark)',
+    name: 'CloudPanel Midnight (Dark)',
     tagline: 'Mode Gelap Royal Sapphire & Slate',
     mode: 'dark',
     primaryColor: '#2563eb',
@@ -144,8 +144,8 @@ export const AVAILABLE_THEMES: ThemeConfig[] = [
   },
   {
     id: 'whm-classic',
-    name: 'WHM Carbon (Dark)',
-    tagline: 'Mode Gelap Karbon & Oranye WHM',
+    name: 'Cloud PRO Carbon (Dark)',
+    tagline: 'Mode Gelap Karbon & Oranye Cloud PRO',
     mode: 'dark',
     primaryColor: '#ea580c',
     accentColor: '#fb923c',

@@ -54,8 +54,8 @@ export const HOSTING_CATEGORIES: HostingCategoryMeta[] = [
   },
   {
     id: 'whm_reseller',
-    title: 'Manajemen Web Hosting (WHM) & Billing',
-    subtitle: 'Modul terisolasi untuk administrasi akun shared hosting cPanel, alokasi kuota NVMe, penagihan otomatis, dan identitas mitra',
+    title: 'Manajemen Web Hosting (Cloud PRO) & Billing',
+    subtitle: 'Modul terisolasi untuk administrasi akun shared hosting CloudPanel, alokasi kuota NVMe, penagihan otomatis, dan identitas mitra',
     whmLabel: 'WEB HOSTING & BILLING ENGINE',
     accentFrom: '#8b5cf6',
     accentTo: '#6366f1',
@@ -127,15 +127,15 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     allowedRoles: ['root', 'reseller']
   },
 
-  // Category 2: Dedicated WHM Web Hosting & Billing Engine
+  // Category 2: Dedicated Cloud PRO Web Hosting & Billing Engine
   {
     id: 'whm_accounts',
     tab: 'whm_accounts',
     actionType: 'tab',
     category: 'whm_reseller',
-    title: 'Manajemen Akun Hosting (WHM)',
+    title: 'Manajemen Akun Hosting (Cloud PRO)',
     resellerTitle: 'Manajemen Akun Klien Hosting',
-    description: 'Sistem administrasi akun cPanel terisolasi, alokasi paket penyimpanan NVMe, manajemen status layanan, dan akses panel klien.',
+    description: 'Sistem administrasi akun CloudPanel terisolasi, alokasi paket penyimpanan NVMe, manajemen status layanan, dan akses panel klien.',
     allowedRoles: ['root', 'reseller']
   },
   {
@@ -162,7 +162,7 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     actionType: 'role',
     category: 'whm_reseller',
     title: 'Manajemen Peran & Akses (RBAC)',
-    description: 'Pengaturan tingkat otoritas akses antara Administrator Utama (Root), Mitra Reseller WHM, dan Pengguna Akhir cPanel.',
+    description: 'Pengaturan tingkat otoritas akses antara Administrator Utama (Root), Mitra Reseller Cloud PRO, dan Pengguna Akhir CloudPanel.',
     allowedRoles: ['root', 'reseller', 'client']
   },
 
@@ -200,7 +200,7 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     tab: 'dns_network',
     actionType: 'tab',
     category: 'domains_network',
-    title: 'Nameserver WHM & Editor Zona DNS',
+    title: 'Nameserver Cloud PRO & Editor Zona DNS',
     description: 'Konfigurasi nameserver otoritatif (NS1–NS4), catatan Glue IP, rekaman A/CNAME/MX/TXT, manajemen subdomain, dan autentikasi DKIM/SPF.',
     allowedRoles: ['root', 'reseller', 'client']
   },

@@ -22,7 +22,7 @@ export const DEFAULT_RESELLER_USER: CurrentSessionUser = {
 export const DEFAULT_CLIENT_USER: CurrentSessionUser = {
   id: 'client-demo',
   username: 'klien_web',
-  name: 'Bagus Web Studio (Klien cPanel)',
+  name: 'Bagus Web Studio (Klien CloudPanel)',
   email: 'klien@denbagoes.my.id',
   role: 'client',
   domain: 'klien.denbagoes.my.id',
@@ -51,7 +51,7 @@ export const ROLE_CONFIG: Record<UserRole, {
 }> = {
   root: {
     label: 'Root Super Admin',
-    badgeLabel: 'Root WHM',
+    badgeLabel: 'Root Cloud PRO',
     badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
     description: 'Akses penuh tanpa batas: Kelola seluruh infrastruktur server, Multi-VPS Cluster, Billing Hosting/VPS, Cloudflare Ingress, Daemon, dan Terminal Root.',
     allowedTabs: ['dashboard', 'vps_cluster', 'billing_whmcs', 'tunnel', 'whm_accounts', 'reseller_branding', 'websites', 'databases', 'php_settings', 'vhosts', 'files', 'email_ftp', 'terminal', 'cron_jobs', 'dns_network', 'backups', 'security', 'logs'],
@@ -67,7 +67,7 @@ export const ROLE_CONFIG: Record<UserRole, {
   },
   reseller: {
     label: 'Reseller Hosting',
-    badgeLabel: 'Reseller WHM',
+    badgeLabel: 'Reseller Cloud PRO',
     badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
     description: 'Tingkat Reseller: Membuat dan mengelola klien hosting/VPS sendiri, tagihan klien, serta alokasi kuota disk & akun.',
     allowedTabs: ['dashboard', 'vps_cluster', 'billing_whmcs', 'whm_accounts', 'reseller_branding', 'websites', 'databases', 'php_settings', 'files', 'email_ftp', 'cron_jobs', 'dns_network', 'backups'],
@@ -82,8 +82,8 @@ export const ROLE_CONFIG: Record<UserRole, {
     homeDirPrefix: '/home'
   },
   client: {
-    label: 'Klien Hosting (cPanel)',
-    badgeLabel: 'cPanel Klien',
+    label: 'Klien Hosting (CloudPanel)',
+    badgeLabel: 'CloudPanel Klien',
     badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
     description: 'Tingkat Klien Mandiri: Mengelola situs web, database, berkas, dan cadangan miliknya sendiri.',
     allowedTabs: ['dashboard', 'websites', 'databases', 'php_settings', 'files', 'email_ftp', 'cron_jobs', 'dns_network', 'backups'],

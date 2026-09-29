@@ -153,9 +153,9 @@ opcache.revalidate_freq = 2
       id: 'ext-ioncube',
       name: 'ioncube_loader',
       title: 'ionCube PHP Loader v13.0.4',
-      desc: 'Zend Extension utama untuk menjalankan skrip PHP terenkripsi ionCube (Wajib untuk RDM Kemenag, SIAKAD, CBT, & WHMCS).',
+      desc: 'Zend Extension utama untuk menjalankan skrip PHP terenkripsi ionCube (Wajib untuk RDM Kemenag, SIAKAD, CBT, & Cloud PRO Billing).',
       category: 'loader',
-      requiredFor: 'RDM Kemenag, SIAKAD, WHMCS',
+      requiredFor: 'RDM Kemenag, SIAKAD, Cloud PRO Billing',
       enabled: true,
       isCritical: true
     },
@@ -369,7 +369,7 @@ opcache.revalidate_freq = 2
       title: 'IMAP / POP3 Mail Extension',
       desc: 'Membaca kotak masuk email dan mengotomasi tiket bantuan / notifikasi.',
       category: 'network',
-      requiredFor: 'WHMCS, Helpdesk, Email Piping',
+      requiredFor: 'Cloud PRO Billing, Helpdesk, Email Piping',
       enabled: true
     },
     {
@@ -619,7 +619,7 @@ opcache.revalidate_freq = 2
                   <span>ionCube PHP Loader v13.0.4</span>
                 </h3>
                 <p className="text-[11px] text-slate-400 leading-relaxed">
-                  Dekoder wajib untuk menjalankan website terenkripsi seperti <strong>RDM (Rapor Digital Madrasah)</strong>, SIAKAD, aplikasi ujian CBT, dan WHMCS.
+                  Dekoder wajib untuk menjalankan website terenkripsi seperti <strong>RDM (Rapor Digital Madrasah)</strong>, SIAKAD, aplikasi ujian CBT, dan Cloud PRO Billing.
                 </p>
               </div>
               <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
@@ -769,7 +769,7 @@ opcache.revalidate_freq = 2
                 },
                 {
                   id: 'whmcs_commercial',
-                  title: 'WHMCS & Skrip Komersial Terproteksi',
+                  title: 'Cloud PRO Billing & Skrip Komersial Terproteksi',
                   badge: 'Dual Loader Aktif',
                   desc: 'Mengaktifkan ionCube Loader + SourceGuardian (ixed), cURL SSL, GMP Cryptography, IMAP Email Piping, GD, dan SOAP Client.',
                   specs: 'ionCube · SourceGuardian · GMP · IMAP'

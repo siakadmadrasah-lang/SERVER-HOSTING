@@ -65,8 +65,8 @@ const DEFAULT_ZONE_RECORDS: DnsZoneRecord[] = [
   { id: 'rec-5', name: 'www.denbagoes.my.id.', ttl: 14400, type: 'CNAME', value: 'denbagoes.my.id', proxied: true },
   { id: 'rec-6', name: 'mail.denbagoes.my.id.', ttl: 14400, type: 'A', value: '104.21.48.91', proxied: false },
   { id: 'rec-7', name: 'webmail.denbagoes.my.id.', ttl: 14400, type: 'CNAME', value: 'denbagoes.my.id', proxied: true },
-  { id: 'rec-8', name: 'cpanel.denbagoes.my.id.', ttl: 14400, type: 'CNAME', value: 'server.denbagoes.my.id', proxied: true },
-  { id: 'rec-9', name: 'whm.denbagoes.my.id.', ttl: 14400, type: 'CNAME', value: 'server.denbagoes.my.id', proxied: true },
+  { id: 'rec-8', name: 'cloudpanel.denbagoes.my.id.', ttl: 14400, type: 'CNAME', value: 'server.denbagoes.my.id', proxied: true },
+  { id: 'rec-9', name: 'cloudpro.denbagoes.my.id.', ttl: 14400, type: 'CNAME', value: 'server.denbagoes.my.id', proxied: true },
   { id: 'rec-10', name: 'ftp.denbagoes.my.id.', ttl: 14400, type: 'CNAME', value: 'denbagoes.my.id', proxied: false },
   { id: 'rec-11', name: 'denbagoes.my.id.', ttl: 14400, type: 'MX', priority: 0, value: 'mail.denbagoes.my.id' },
   { id: 'rec-12', name: 'denbagoes.my.id.', ttl: 86400, type: 'NS', value: 'ns1.denbagoes.my.id' },
@@ -238,7 +238,7 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
   const handleSaveNameservers = (e: React.FormEvent) => {
     e.preventDefault();
     if (onShowToast) {
-      onShowToast(`Konfigurasi Nameserver WHM (${ns1Host} & ${ns2Host}) dan Resolver DNS berhasil disimpan & disinkronkan!`, 'success');
+      onShowToast(`Konfigurasi Nameserver Cloud PRO (${ns1Host} & ${ns2Host}) dan Resolver DNS berhasil disimpan & disinkronkan!`, 'success');
     }
   };
 
@@ -280,7 +280,7 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
 
   const handleResetZone = () => {
     setZoneRecords(DEFAULT_ZONE_RECORDS);
-    if (onShowToast) onShowToast(`Zona DNS untuk ${selectedZoneDomain} berhasil dikembalikan ke template standar WHM/cPanel.`, 'info');
+    if (onShowToast) onShowToast(`Zona DNS untuk ${selectedZoneDomain} berhasil dikembalikan ke template standar Cloud PRO / CloudPanel.`, 'info');
   };
 
   const handleCreateSubdomain = (e: React.FormEvent) => {
@@ -352,14 +352,14 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
           <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
             <span>Domain, Nameserver &amp; Cloud Ingress</span>
             <span aria-hidden="true">/</span>
-            <span className="text-sky-400 font-mono font-semibold">WHM Nameserver &amp; cPanel DNS Zone Studio</span>
+            <span className="text-sky-400 font-mono font-semibold">Cloud PRO Nameserver &amp; CloudPanel DNS Zone Studio</span>
           </div>
           <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
             <span>Pengaturan Nameserver (NS1/NS2), DNS Zone Editor &amp; Subdomain</span>
             <Globe className="w-5 h-5 text-sky-400" />
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Konfigurasi Child Nameserver WHM (Glue Record IP), kelola penuh record DNS (A, AAAA, CNAME, MX, TXT, SRV), Subdomain, Redirect 301, serta SPF/DKIM/DMARC.
+            Konfigurasi Child Nameserver Cloud PRO (Glue Record IP), kelola penuh record DNS (A, AAAA, CNAME, MX, TXT, SRV), Subdomain, Redirect 301, serta SPF/DKIM/DMARC.
           </p>
         </div>
 
@@ -383,7 +383,7 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
           }`}
         >
           <Server className="w-3.5 h-3.5" />
-          <span>Nameserver WHM (NS1–NS4 &amp; Resolver)</span>
+          <span>Nameserver Cloud PRO (NS1–NS4 &amp; Resolver)</span>
         </button>
 
         <button
@@ -396,7 +396,7 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
           }`}
         >
           <Sliders className="w-3.5 h-3.5" />
-          <span>cPanel DNS Zone Editor ({zoneRecords.length} Record)</span>
+          <span>CloudPanel DNS Zone Editor ({zoneRecords.length} Record)</span>
         </button>
 
         <button
@@ -450,10 +450,10 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
               <div>
                 <h3 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
                   <Server className="w-4 h-4 text-sky-400" />
-                  <span>Konfigurasi Nameserver Utama Server WHM (Child Nameserver / Glue Records)</span>
+                  <span>Konfigurasi Nameserver Utama Server Cloud PRO (Child Nameserver / Glue Records)</span>
                 </h3>
                 <p className="text-xs text-slate-400 mt-0.5">
-                  Nameserver ini otomatis digunakan pada setiap akun cPanel &amp; domain baru yang dibuat di server Anda. Arahkan domain klien ke Nameserver di bawah ini.
+                  Nameserver ini otomatis digunakan pada setiap akun CloudPanel &amp; domain baru yang dibuat di server Anda. Arahkan domain klien ke Nameserver di bawah ini.
                 </p>
               </div>
 
@@ -629,7 +629,7 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
             <div className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
               <div>
                 <h3 className="text-sm font-bold text-white uppercase tracking-wider">
-                  Pemilihan Nameserver Daemon (WHM Nameserver Selection)
+                  Pemilihan Nameserver Daemon (Cloud PRO Nameserver Selection)
                 </h3>
                 <p className="text-xs text-slate-400 mt-0.5">
                   Pilih engine server DNS otoritatif yang menangani permintaan domain di port 53.
@@ -640,7 +640,7 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
                 {[
                   {
                     id: 'powerdns',
-                    name: 'PowerDNS Authoritative Server (Direkomendasikan WHM/cPanel)',
+                    name: 'PowerDNS Authoritative Server (Direkomendasikan Cloud PRO / CloudPanel)',
                     desc: 'Sangat cepat, hemat memori RAM, mendukung penuh DNSSEC otomatis dan integrasi database zona.',
                     badge: 'Default Aktif'
                   },
@@ -775,7 +775,7 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
                 <button
                   type="button"
                   onClick={handleResetZone}
-                  title="Reset ke Template Default WHM"
+                  title="Reset ke Template Default Cloud PRO"
                   className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg text-xs font-medium flex items-center gap-1 cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -1120,7 +1120,7 @@ export const DnsNetworkView: React.FC<DnsNetworkViewProps> = ({ onShowToast }) =
               <div>
                 <h3 className="text-sm font-bold text-white flex items-center gap-2">
                   <Key className="w-4 h-4 text-sky-400" />
-                  <span>cPanel Email Deliverability (Autentikasi SPF, DKIM, DMARC &amp; Reverse PTR)</span>
+                  <span>CloudPanel Email Deliverability (Autentikasi SPF, DKIM, DMARC &amp; Reverse PTR)</span>
                 </h3>
                 <p className="text-xs text-slate-400 mt-0.5">
                   Memastikan email notifikasi dari website (reset password, pendaftaran PPDB, invoice) masuk ke Inbox utama (bukan folder Spam).

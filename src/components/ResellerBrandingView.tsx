@@ -29,7 +29,7 @@ export const ResellerBrandingView: React.FC<ResellerBrandingViewProps> = ({
 }) => {
   const currentBranding = currentUser.resellerBranding || {
     companyName: currentUser.role === 'reseller' ? 'Nusantara Cloud Host' : 'Cloud PRO Reseller',
-    portalTitle: 'Portal Hosting Klien cPanel',
+    portalTitle: 'Portal Hosting Klien CloudPanel',
     supportEmail: currentUser.email || 'support@hostingsaya.id',
     footerText: 'Powered by High-Speed Cloud Infrastructure',
     accentColor: '#0284c7'
@@ -93,7 +93,7 @@ export const ResellerBrandingView: React.FC<ResellerBrandingViewProps> = ({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
           <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
-            <span>Manajemen Akun WHM</span>
+            <span>Manajemen Akun Cloud PRO</span>
             <span aria-hidden="true">/</span>
             <span className="text-amber-400 font-mono">White-Label Branding</span>
           </div>
@@ -102,7 +102,7 @@ export const ResellerBrandingView: React.FC<ResellerBrandingViewProps> = ({
             <Sparkles className="w-5 h-5 text-amber-400" />
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Unggah logo perusahaan Anda sendiri, atur nama merek dagang hosting, dan berikan pengalaman profesional kepada klien Anda saat mengakses cPanel.
+            Unggah logo perusahaan Anda sendiri, atur nama merek dagang hosting, dan berikan pengalaman profesional kepada klien Anda saat mengakses CloudPanel.
           </p>
         </div>
 
@@ -197,7 +197,7 @@ export const ResellerBrandingView: React.FC<ResellerBrandingViewProps> = ({
 
               <div>
                 <label className="block text-xs font-semibold text-slate-300 mb-1">
-                  Judul Portal Klien cPanel
+                  Judul Portal Klien CloudPanel
                 </label>
                 <input
                   type="text"
@@ -275,7 +275,7 @@ export const ResellerBrandingView: React.FC<ResellerBrandingViewProps> = ({
             </div>
 
             <p className="text-xs text-slate-400">
-              Berikut adalah simulasi tampilan antarmuka saat klien hosting cPanel Anda membuka panel kontrol:
+              Berikut adalah simulasi tampilan antarmuka saat klien hosting CloudPanel Anda membuka panel kontrol:
             </p>
 
             {/* Micro Frame Preview */}
@@ -294,7 +294,7 @@ export const ResellerBrandingView: React.FC<ResellerBrandingViewProps> = ({
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                    cPanel Klien
+                    CloudPanel Klien
                   </span>
                 </div>
               </div>

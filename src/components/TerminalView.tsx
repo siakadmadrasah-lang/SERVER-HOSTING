@@ -143,7 +143,7 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ currentLang, onOpenS
       output = `On branch main\nYour branch is up to date with 'origin/main'.\nnothing to commit, working tree clean`;
       type = 'success';
     } else if (trimmed.includes('git pull') || trimmed.includes('git fetch')) {
-      output = `From https://github.com/siakadmadrasah-lang/SERVER-HOSTING\n * branch            main     -> FETCH_HEAD\nAlready up to date (Cloud PRO v3.3 WHM/cPanel Icon Edition).`;
+      output = `From https://github.com/siakadmadrasah-lang/SERVER-HOSTING\n * branch            main     -> FETCH_HEAD\nAlready up to date (Cloud PRO v4.0 Cloud PRO / CloudPanel Edition).`;
       type = 'success';
     } else if (trimmed.includes('update.sh') || trimmed.includes('install-php-extensions.sh')) {
       output = `🚀 MEMULAI PEMBARUAN OTOMATIS CLOUD PRO SERVER VPS\n📥 Menarik pembaruan fitur terbaru dari GitHub (siakadmadrasah-lang/SERVER-HOSTING)...\n🧩 Memastikan ionCube Loader v13.0.4, cURL, GD, ZipArchive, Imagick, Intl & SOAP aktif...\n⚡ Menyalin bundle produksi dist/* ke /var/www/html...\n💻 Menyiapkan Web Terminal di /var/www/html/terminal...\n📁 Menyiapkan Web File Manager di /var/www/html/filemanager...\n🔄 Merestart PHP-FPM, Nginx & Cloudflare Tunnel...\n✅ PEMBARUAN SUKSES! Tampilan Terang Modern, ionCube Loader, cURL & 26 Ekstensi PHP Telah Aktif!\n   👉 Panel Utama: https://server.denbagoes.my.id (Login: denbaguse / masbagus15)\n   👉 Web Terminal: https://server.denbagoes.my.id/terminal/ (User: denbaguse / Pass: masbagus15)`;

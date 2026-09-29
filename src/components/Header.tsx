@@ -87,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </div>
             <span className="hidden sm:block text-[10px] text-slate-400 tracking-tight leading-tight mt-0.5 truncate">
-              WHM &amp; cPanel Cloud Server
+              Cloud PRO &amp; CloudPanel Server
             </span>
           </div>
         </a>

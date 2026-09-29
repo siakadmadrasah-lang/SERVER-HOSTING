@@ -288,12 +288,12 @@ export const EmailFtpView: React.FC<EmailFtpViewProps> = ({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <div>
           <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
-            <span>Berkas, Email &amp; Fitur Lanjutan cPanel</span>
+            <span>Berkas, Email &amp; Fitur Lanjutan CloudPanel</span>
             <span aria-hidden="true">/</span>
             <span className="text-sky-400 font-mono font-semibold">Mail Server, FTP &amp; Directory Tools</span>
           </div>
           <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-            <span>Manajemen Email Domain, Roundcube Webmail, Akun FTP &amp; Fitur cPanel</span>
+            <span>Manajemen Email Domain, Roundcube Webmail, Akun FTP &amp; Fitur CloudPanel</span>
             <Mail className="w-5 h-5 text-sky-400" />
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
@@ -510,7 +510,7 @@ export const EmailFtpView: React.FC<EmailFtpViewProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
             <h3 className="text-sm font-bold text-white">
-              Penerusan Email Otomatis (cPanel Email Forwarders)
+              Penerusan Email Otomatis (CloudPanel Email Forwarders)
             </h3>
             <p className="text-xs text-slate-400">
               Teruskan setiap email yang masuk ke domain server langsung ke akun Gmail/pribadi Anda.
@@ -763,7 +763,7 @@ export const EmailFtpView: React.FC<EmailFtpViewProps> = ({
           <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl space-y-3 shadow-xl">
             <h3 className="text-sm font-bold text-white flex items-center gap-2">
               <ShieldAlert className="w-4 h-4 text-rose-400" />
-              <span>cPanel IP Blocker (Blokir IP Mencurigakan)</span>
+              <span>CloudPanel IP Blocker (Blokir IP Mencurigakan)</span>
             </h3>
             <div className="flex items-center gap-2">
               <input

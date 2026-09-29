@@ -427,7 +427,7 @@ export default function App() {
     };
     setWebsites(prev => [newSite, ...prev]);
 
-    showToast(`Akun cPanel '@${account.username}' (${account.domain}) berhasil dibuat & ingress tunnel aktif!`);
+    showToast(`Akun CloudPanel '@${account.username}' (${account.domain}) berhasil dibuat & ingress tunnel aktif!`);
   };
 
   const handleDeleteHostingAccount = (accountId: string) => {

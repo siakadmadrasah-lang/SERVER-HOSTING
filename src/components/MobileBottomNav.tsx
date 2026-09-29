@@ -52,7 +52,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     return [
       { id: 'dashboard', label: 'Dasbor', icon: LayoutDashboard, color: 'text-indigo-400' },
       { id: 'tunnel', label: 'Tunnel', icon: Radio, color: 'text-amber-400' },
-      { id: 'whm_accounts', label: 'WHM', icon: Users, color: 'text-indigo-400' },
+      { id: 'whm_accounts', label: 'Cloud PRO', icon: Users, color: 'text-indigo-400' },
       { id: 'databases', label: 'Database', icon: Database, color: 'text-cyan-400' }
     ];
   };

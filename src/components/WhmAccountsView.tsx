@@ -163,13 +163,13 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
           <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
             <span>Tingkat Root Administrator</span>
             <span aria-hidden="true">/</span>
-            <span className="text-sky-400 font-mono">Web Host Manager (WHM Core)</span>
+            <span className="text-sky-400 font-mono">Manajer Server (Cloud PRO Core)</span>
           </div>
           <h1 className="text-xl font-bold text-white tracking-tight">
-            Manajemen Akun Hosting & Multi-Tenant cPanel
+            Manajemen Akun Hosting & Multi-Tenant CloudPanel
           </h1>
           <p className="text-xs text-slate-400 mt-0.5">
-            Kelola akun klien selayaknya WHM di cPanel: kuota disk terisolasi, prefix database otomatis, direktori /home, dan auto-routing Cloudflare Tunnel.
+            Kelola akun klien di Cloud PRO & CloudPanel: kuota disk terisolasi, prefix database otomatis, direktori /home, dan auto-routing Cloudflare Tunnel.
           </p>
         </div>
 
@@ -219,7 +219,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
 
           <div className="p-3 bg-slate-950/70 border border-emerald-500/30 rounded-lg space-y-1">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-emerald-300">3. Klien Biasa (cPanel)</span>
+              <span className="font-bold text-emerald-300">3. Klien Biasa (CloudPanel)</span>
               <span className="text-[10px] text-emerald-400 font-mono">End-User</span>
             </div>
             <p className="text-[11px] text-slate-400 leading-relaxed">
@@ -229,10 +229,10 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
         </div>
       </div>
 
-      {/* WHM Resource Pool Metrics */}
+      {/* Cloud PRO Resource Pool Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
         <div className="p-3.5 bg-slate-900 border border-slate-800 rounded-lg">
-          <div className="text-slate-400 mb-1">Total Akun cPanel</div>
+          <div className="text-slate-400 mb-1">Total Akun CloudPanel</div>
           <div className="text-lg font-bold text-white font-mono tabular-nums">{totalAccounts} Akun Klien</div>
           <div className="text-[11px] text-emerald-400 mt-1">{activeAccounts} Aktif · {suspendedAccounts} Suspend</div>
         </div>
@@ -267,10 +267,10 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
           <div>
             <h3 className="text-xs font-semibold text-white uppercase tracking-wider flex items-center gap-2">
               <Users className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Daftar Akun Hosting Klien (WHM List Accounts)</span>
+              <span>Daftar Akun Hosting Klien (Cloud PRO List Accounts)</span>
             </h3>
             <p className="text-[11px] text-slate-400">
-              Setiap akun memiliki isolasi sistem UNIX, direktori root tersendiri, dan portal cPanel terpisah.
+              Setiap akun memiliki isolasi sistem UNIX, direktori root tersendiri, dan portal CloudPanel terpisah.
             </p>
           </div>
           <span className="text-xs font-mono text-slate-400 tabular-nums">
@@ -358,7 +358,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                     <button
                       onClick={() => onImpersonateAccount(acc)}
                       className="py-1.5 px-2 bg-indigo-500/15 hover:bg-indigo-500/25 text-indigo-300 border border-indigo-500/30 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 active:scale-95"
-                      title="Simulasikan login langsung ke dasbor cPanel akun ini"
+                      title="Simulasikan login langsung ke dasbor CloudPanel akun ini"
                     >
                       <UserCheck className="w-3.5 h-3.5" />
                       <span>Login Klien</span>
@@ -369,7 +369,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                     className="flex-1 py-1.5 px-2.5 bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 active:scale-95"
                   >
                     <ExternalLink className="w-3 h-3" />
-                    <span>cPanel</span>
+                    <span>CloudPanel</span>
                   </button>
                   <button
                     onClick={() => onToggleSuspend(acc.id)}
@@ -407,7 +407,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                 <th className="px-4 py-3">Database</th>
                 <th className="px-4 py-3">Cloudflare Tunnel</th>
                 <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3 text-right">Aksi cPanel</th>
+                <th className="px-4 py-3 text-right">Aksi CloudPanel</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/70">
@@ -419,7 +419,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                     </div>
                     <h4 className="text-sm font-semibold text-white mb-1">Belum Ada Akun Hosting Klien</h4>
                     <p className="text-xs text-slate-400 max-w-md mx-auto mb-4">
-                      Semua akun default proyek telah dibersihkan. Klik tombol di bawah untuk membuat akun hosting cPanel / virtual host klien pertama Anda.
+                      Semua akun default proyek telah dibersihkan. Klik tombol di bawah untuk membuat akun hosting CloudPanel / virtual host klien pertama Anda.
                     </p>
                     <button
                       onClick={() => setIsCreateModalOpen(true)}
@@ -493,7 +493,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                           <button
                             onClick={() => onImpersonateAccount(acc)}
                             className="px-2 py-1 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded text-[11px] font-semibold transition-colors flex items-center gap-1 active:scale-95"
-                            title="Simulasikan login langsung ke dasbor cPanel akun ini"
+                            title="Simulasikan login langsung ke dasbor CloudPanel akun ini"
                           >
                             <UserCheck className="w-3 h-3" />
                             <span>Login Klien</span>
@@ -502,10 +502,10 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                         <button
                           onClick={() => setSelectedAccountForCpanel(acc)}
                           className="px-2.5 py-1 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded text-[11px] font-semibold transition-colors flex items-center gap-1"
-                          title="Buka panel kontrol cPanel akun ini"
+                          title="Buka panel kontrol CloudPanel akun ini"
                         >
                           <ExternalLink className="w-3 h-3" />
-                          <span>cPanel</span>
+                          <span>CloudPanel</span>
                         </button>
                         <button
                           onClick={() => onToggleSuspend(acc.id)}
@@ -535,14 +535,14 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
         </div>
       </div>
 
-      {/* WHM Modal: Create New Account Wizard */}
+      {/* Cloud PRO Modal: Create New Account Wizard */}
       {isCreateModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in">
           <form onSubmit={handleCreateAccount} className="bg-slate-900 border border-slate-800 rounded-xl w-full max-w-lg p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-800">
               <div className="flex items-center gap-2">
                 <Users className="w-5 h-5 text-sky-400" />
-                <h3 className="text-base font-semibold text-white">Buat Akun Hosting Baru (WHM)</h3>
+                <h3 className="text-base font-semibold text-white">Buat Akun Hosting Baru (Cloud PRO)</h3>
               </div>
               <button
                 type="button"
@@ -570,7 +570,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-xs text-white">Klien Biasa</span>
-                    <span className="text-[10px] px-1 rounded bg-emerald-500/20 text-emerald-300 font-mono">cPanel</span>
+                    <span className="text-[10px] px-1 rounded bg-emerald-500/20 text-emerald-300 font-mono">CloudPanel</span>
                   </div>
                   <p className="text-[10px] text-slate-400 leading-tight">
                     Untuk pemilik website perorangan. Akses terbatas ke folder dan domain sendiri.
@@ -588,7 +588,7 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-xs text-white">Reseller Hosting</span>
-                    <span className="text-[10px] px-1 rounded bg-amber-500/20 text-amber-300 font-mono">Mitra WHM</span>
+                    <span className="text-[10px] px-1 rounded bg-amber-500/20 text-amber-300 font-mono">Mitra Cloud PRO</span>
                   </div>
                   <p className="text-[10px] text-slate-400 leading-tight">
                     Untuk mitra/agensi. Dapat membuat dan mengelola akun klien dalam batas kuota pool.
@@ -717,15 +717,15 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
         </div>
       )}
 
-      {/* FULL cPanel SIMULATION MODAL (When clicking 'cPanel') */}
+      {/* FULL CloudPanel SIMULATION MODAL (When clicking 'CloudPanel') */}
       {selectedAccountForCpanel && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-950/90 backdrop-blur-md animate-in fade-in">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-5xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
-            {/* cPanel Top Header */}
+            {/* CloudPanel Top Header */}
             <div className="px-6 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <span className="px-2.5 py-1 rounded bg-orange-600 text-white font-mono font-bold text-xs tracking-wider">
-                  cPanel
+                  CloudPanel
                 </span>
                 <div>
                   <h2 className="text-sm font-bold text-white flex items-center gap-2">
@@ -745,17 +745,17 @@ export const WhmAccountsView: React.FC<WhmAccountsViewProps> = ({
                 className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium flex items-center gap-1.5 border border-slate-700"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Kembali ke WHM Root</span>
+                <span>Kembali ke Cloud PRO Root</span>
               </button>
             </div>
 
-            {/* cPanel Content Layout */}
+            {/* CloudPanel Content Layout */}
             <div className="flex-1 overflow-y-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-950">
               {/* Right Sidebar: General Information / Statistics (4 cols) */}
               <div className="lg:col-span-4 space-y-4 order-2 lg:order-1">
                 <div className="p-4 bg-slate-900 border border-slate-800 rounded-xl space-y-3">
                   <h3 className="text-xs font-bold text-white uppercase tracking-wider pb-2 border-b border-slate-800">
-                    Informasi Akun cPanel
+                    Informasi Akun CloudPanel
                   </h3>
 
                   <div className="space-y-2 text-xs font-mono text-slate-300">

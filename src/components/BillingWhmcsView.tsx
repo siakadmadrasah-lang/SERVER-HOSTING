@@ -28,7 +28,7 @@ export interface ClientInvoice {
   invoiceNumber: string;
   clientName: string;
   clientWhatsapp: string;
-  serviceType: 'Hosting cPanel' | 'VPS KVM Cloud' | 'Dedicated Server' | 'Domain & SSL';
+  serviceType: 'Hosting CloudPanel' | 'VPS KVM Cloud' | 'Dedicated Server' | 'Domain & SSL';
   planName: string;
   domainOrIp: string;
   amountIdr: number;
@@ -68,7 +68,7 @@ const DEFAULT_INVOICES: ClientInvoice[] = [
     invoiceNumber: 'INV-2026-0902',
     clientName: 'MTsN 2 Garut (Admin SIAKAD)',
     clientWhatsapp: '081398765432',
-    serviceType: 'Hosting cPanel',
+    serviceType: 'Hosting CloudPanel',
     planName: 'Enterprise Madrasah NVMe 25GB',
     domainOrIp: 'siakad.mtsn2garut.sch.id',
     amountIdr: 125000,
@@ -96,7 +96,7 @@ const DEFAULT_INVOICES: ClientInvoice[] = [
     invoiceNumber: 'INV-2026-0904',
     clientName: 'SMK Islam Terpadu Al-Hikmah',
     clientWhatsapp: '085711223344',
-    serviceType: 'Hosting cPanel',
+    serviceType: 'Hosting CloudPanel',
     planName: 'Hosting PPDB & CBT 10GB',
     domainOrIp: 'ppdb.smkalhikmah.sch.id',
     amountIdr: 85000,
@@ -114,7 +114,7 @@ const DEFAULT_PLANS: CommercialProductPlan[] = [
     name: 'Hosting Starter UMKM / Web Profil',
     priceMonthlyIdr: 45000,
     specsSummary: '5 GB NVMe · Unlimited Bandwidth · Gratis SSL',
-    features: ['cPanel / Cloud PRO Login', 'MultiPHP 7.4 - 8.4 + ionCube', 'Softaculous 1-Click Installer', '2 Akun Email Bisnis'],
+    features: ['CloudPanel / Cloud PRO Login', 'MultiPHP 7.4 - 8.4 + ionCube', 'Softaculous 1-Click Installer', '2 Akun Email Bisnis'],
     activeSubscribers: 18
   },
   {
@@ -183,7 +183,7 @@ export const BillingWhmcsView: React.FC<BillingWhmcsViewProps> = ({
   const [isAddInvoiceOpen, setIsAddInvoiceOpen] = useState(false);
   const [newInvClient, setNewInvClient] = useState('');
   const [newInvWa, setNewInvWa] = useState('');
-  const [newInvServiceType, setNewInvServiceType] = useState<ClientInvoice['serviceType']>('Hosting cPanel');
+  const [newInvServiceType, setNewInvServiceType] = useState<ClientInvoice['serviceType']>('Hosting CloudPanel');
   const [newInvPlan, setNewInvPlan] = useState('Hosting Pro SIAKAD / RDM Madrasah');
   const [newInvDomain, setNewInvDomain] = useState('');
   const [newInvAmount, setNewInvAmount] = useState('125000');
@@ -265,7 +265,7 @@ export const BillingWhmcsView: React.FC<BillingWhmcsViewProps> = ({
   const handleSaveGatewayConfig = (e: React.FormEvent) => {
     e.preventDefault();
     if (onShowToast) {
-      onShowToast('Konfigurasi Payment Gateway QRIS & Otomasi Billing WHMCS berhasil disimpan!', 'success');
+      onShowToast('Konfigurasi Payment Gateway QRIS & Otomasi Billing Cloud PRO berhasil disimpan!', 'success');
     }
   };
 
@@ -277,13 +277,13 @@ export const BillingWhmcsView: React.FC<BillingWhmcsViewProps> = ({
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
               <CreditCard className="w-4 h-4" />
-              <span>WHMCS / BOXBILLING ENTERPRISE AUTOMATION SUITE</span>
+              <span>CLOUD PRO BILLING &amp; ENTERPRISE AUTOMATION SUITE</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
               Pusat Billing Pengusaha Hosting &amp; Penyewaan VPS Otomatis
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-              Kelola langganan klien hosting &amp; VPS, terbitkan invoice otomatis, terima pembayaran via QRIS / Virtual Account Bank, kirim pengingat jatuh tempo via WhatsApp, serta auto-suspend layanan tanpa perlu membeli lisensi WHMCS berbayar.
+              Kelola langganan klien hosting &amp; VPS, terbitkan invoice otomatis, terima pembayaran via QRIS / Virtual Account Bank, kirim pengingat jatuh tempo via WhatsApp, serta auto-suspend layanan secara terintegrasi di Cloud PRO.
             </p>
           </div>
 
@@ -492,7 +492,7 @@ export const BillingWhmcsView: React.FC<BillingWhmcsViewProps> = ({
               </div>
 
               <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-                <span className="text-[11px] text-slate-400">Auto-Setup cPanel / KVM</span>
+                <span className="text-[11px] text-slate-400">Auto-Setup CloudPanel / KVM</span>
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(`https://denbagoes.my.id/order?plan=${plan.id}`);
@@ -583,7 +583,7 @@ export const BillingWhmcsView: React.FC<BillingWhmcsViewProps> = ({
                   Auto-Provisioning &amp; Auto-Unsuspend Saat Callback QRIS Lunas
                 </div>
                 <div className="text-[11px] text-slate-400">
-                  Aktifkan akun cPanel atau nyalakan kembali VPS KVM secara instan begitu dana diterima.
+                  Aktifkan akun CloudPanel atau nyalakan kembali VPS KVM secara instan begitu dana diterima.
                 </div>
               </div>
               <input
@@ -656,7 +656,7 @@ export const BillingWhmcsView: React.FC<BillingWhmcsViewProps> = ({
                     onChange={(e) => setNewInvServiceType(e.target.value as ClientInvoice['serviceType'])}
                     className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white"
                   >
-                    <option value="Hosting cPanel">Hosting cPanel NVMe</option>
+                    <option value="Hosting CloudPanel">Hosting CloudPanel NVMe</option>
                     <option value="VPS KVM Cloud">VPS KVM Cloud</option>
                     <option value="Dedicated Server">Dedicated Baremetal Server</option>
                     <option value="Domain & SSL">Registrasi Domain &amp; SSL</option>

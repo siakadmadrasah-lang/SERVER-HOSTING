@@ -65,12 +65,12 @@ interface DashboardViewProps {
 
 const COMPACT_THEME_LABELS: Record<ThemeId, string> = {
   'daylight-pro': 'Daylight Pro',
-  'cpanel-light': 'cPanel Light',
-  'whm-light': 'WHM Light',
+  'cpanel-light': 'CloudPanel Light',
+  'whm-light': 'Cloud PRO Light',
   'emerald-light': 'Mint Light',
   'obsidian': 'Obsidian Dark',
-  'cpanel-jupiter': 'cPanel Dark',
-  'whm-classic': 'WHM Dark',
+  'cpanel-jupiter': 'CloudPanel Dark',
+  'whm-classic': 'Cloud PRO Dark',
   'royal-amethyst': 'Amethyst Dark'
 };
 
@@ -191,13 +191,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               type="text"
               value={menuSearch}
               onChange={(e) => setMenuSearch(e.target.value)}
-              placeholder="Cari modul (VPS, WHM, DNS, MultiPHP, Email)..."
+              placeholder="Cari modul (VPS, Cloud PRO, DNS, MultiPHP, Email)..."
               className="w-full pl-9 pr-3.5 py-2.5 bg-slate-950 border border-slate-800 focus:border-sky-500 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-colors"
             />
           </div>
         </div>
 
-        {/* Dedicated Dual-Engine Workspace Switcher (Hosting WHM vs VPS Infrastructure) */}
+        {/* Dedicated Dual-Engine Workspace Switcher (Hosting Cloud PRO vs VPS Infrastructure) */}
         {currentUser.role !== 'client' && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
             <button
@@ -213,7 +213,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               }`}
             >
               <div className="text-xs font-bold">Mode Ekosistem Terpadu</div>
-              <div className="text-[10px] opacity-85 mt-0.5">Tampilkan seluruh modul Hosting WHM &amp; Node VPS</div>
+              <div className="text-[10px] opacity-85 mt-0.5">Tampilkan seluruh modul Hosting Cloud PRO &amp; Node VPS</div>
             </button>
 
             <button
@@ -229,7 +229,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               }`}
             >
               <div className="text-xs font-bold">Khusus Manajemen Web Hosting</div>
-              <div className="text-[10px] opacity-85 mt-0.5">Fokus WHM, Akun cPanel, Domain, DNS, Email &amp; SQL</div>
+              <div className="text-[10px] opacity-85 mt-0.5">Fokus Cloud PRO, Akun CloudPanel, Domain, DNS, Email &amp; SQL</div>
             </button>
 
             <button
@@ -466,7 +466,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-3.5">
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-slate-400 font-mono">
-                <span className="text-emerald-400 font-semibold whitespace-nowrap">Panel Hosting cPanel</span>
+                <span className="text-emerald-400 font-semibold whitespace-nowrap">Panel Hosting CloudPanel</span>
                 <span>·</span>
                 <span className="whitespace-nowrap">Paket: <strong className="text-slate-200">{currentUser.packageName || 'Standard-NVMe'}</strong></span>
               </div>
@@ -586,7 +586,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-3.5">
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-mono text-slate-400">
-                <span className="text-amber-400 font-semibold whitespace-nowrap">Reseller Hosting (WHM)</span>
+                <span className="text-amber-400 font-semibold whitespace-nowrap">Reseller Hosting (Cloud PRO)</span>
                 <span>·</span>
                 <span className="whitespace-nowrap">Alokasi: <strong className="text-amber-400">{maxAcc} Akun Klien</strong></span>
               </div>
@@ -594,7 +594,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 Dasbor Reseller: {currentUser.name}
               </h1>
               <p className="text-xs text-slate-400">
-                Kelola paket hosting dan akun cPanel klien Anda secara terisolasi.
+                Kelola paket hosting dan akun CloudPanel klien Anda secara terisolasi.
               </p>
             </div>
 
@@ -692,7 +692,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </span>
               <span aria-hidden="true">·</span>
               <span className="font-mono text-emerald-400 font-semibold whitespace-nowrap">
-                WHM Root Active
+                Cloud PRO Root Active
               </span>
             </div>
 
@@ -700,7 +700,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               {t.appSubtitle}
             </h1>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Orkestrasi otomatis web server, isolasi vhost WHM/cPanel, ionCube + cURL, dan manajemen cluster database terpusat.
+              Orkestrasi otomatis web server, isolasi vhost Cloud PRO/CloudPanel, ionCube + cURL, dan manajemen cluster database terpusat.
             </p>
           </div>
 

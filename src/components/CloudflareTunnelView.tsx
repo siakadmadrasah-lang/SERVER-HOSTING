@@ -89,7 +89,7 @@ tunnel: ${tunnelStatus.tunnelId}
 credentials-file: /etc/cloudflared/${tunnelStatus.tunnelId}.json
 
 ingress:
-${routes.map(r => `  # WHM Account Route: ${r.hostname}
+${routes.map(r => `  # Cloud PRO Account Route: ${r.hostname}
   - hostname: ${r.hostname}
     service: ${r.service}
     originRequest:
@@ -284,7 +284,7 @@ ${routes.map(r => `  # WHM Account Route: ${r.hostname}
                   <div className="space-y-1 text-slate-200">
                     <strong className="text-amber-300 font-semibold">PENTING: Jangan Beli Paket Hosting!</strong>
                     <p className="text-[11px] text-slate-300 leading-relaxed">
-                      Karena Anda menggunakan <strong>Cloudflare Tunnel & Server Lokal Anda sendiri</strong>, Anda <strong>HANYA butuh membeli nama domain</strong> saja. Jangan centang paket cPanel hosting, shared hosting, atau WordPress hosting di registrar agar tidak membuang biaya ratusan ribu rupiah.
+                      Karena Anda menggunakan <strong>Cloudflare Tunnel & Server Lokal Anda sendiri</strong>, Anda <strong>HANYA butuh membeli nama domain</strong> saja. Jangan centang paket CloudPanel hosting, shared hosting, atau WordPress hosting di registrar agar tidak membuang biaya ratusan ribu rupiah.
                     </p>
                   </div>
                 </div>
@@ -536,7 +536,7 @@ ${routes.map(r => `  # WHM Account Route: ${r.hostname}
                       <ul className="text-[11px] text-slate-400 space-y-1 list-disc pl-4">
                         <li><strong>Harga:</strong> Mulai Rp 30.000 – Rp 50.000 / bulan ($2.5 - $3.5).</li>
                         <li><strong>FAKTA MENARIK:</strong> Lebih hemat daripada tagihan listrik PC rumah Anda! (PC 150W hidup 24 jam x 30 hari = ~Rp 150.000/bln biaya listrik PLN).</li>
-                        <li><strong>Bebas Batasan Hosting:</strong> Punya akses <code>root</code> mandiri, bebas install Cloud PRO &amp; puluhan website tanpa limit inode cPanel.</li>
+                        <li><strong>Bebas Batasan Hosting:</strong> Punya akses <code>root</code> mandiri, bebas install Cloud PRO &amp; puluhan website tanpa limit inode CloudPanel.</li>
                         <li><strong>Trik Gratis:</strong> Bisa gunakan <strong>Oracle Cloud Always Free</strong> (4 OCPU ARM + 24GB RAM GRATIS selamanya).</li>
                       </ul>
                       <div className="text-[10px] text-emerald-400 bg-emerald-950/40 p-1.5 rounded border border-emerald-500/20 font-medium">
@@ -777,7 +777,7 @@ ${routes.map(r => `  # WHM Account Route: ${r.hostname}
           </p>
         </div>
 
-        {/* Card 2: Penggunaan Permanen dengan Domain Sendiri (Untuk WHM & cPanel) */}
+        {/* Card 2: Penggunaan Permanen dengan Domain Sendiri (Untuk Cloud PRO & CloudPanel) */}
         <div className="p-4 bg-slate-900 border border-amber-500/30 rounded-xl space-y-3">
           <div className="flex items-center justify-between">
             <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">
@@ -786,7 +786,7 @@ ${routes.map(r => `  # WHM Account Route: ${r.hostname}
             <span className="text-[11px] text-slate-400">Permanen · Multi-Tenant</span>
           </div>
           <h3 className="text-sm font-bold text-white">
-            Langkah Setup dengan Domain Pribadi (WHM & cPanel)
+            Langkah Setup dengan Domain Pribadi (Cloud PRO & CloudPanel)
           </h3>
           <ol className="text-xs text-slate-300 space-y-1.5 list-decimal list-inside leading-relaxed">
             <li>
@@ -831,7 +831,7 @@ ${routes.map(r => `  # WHM Account Route: ${r.hostname}
         <div className="p-3.5 bg-slate-900 border border-slate-800 rounded-lg">
           <div className="text-slate-400 mb-1">Jumlah Rute Ingress</div>
           <div className="text-base font-bold text-amber-400 font-mono tabular-nums">{routes.length} Domain Aktif</div>
-          <div className="text-[11px] text-slate-500 mt-1">Otomatis sinkron dengan WHM</div>
+          <div className="text-[11px] text-slate-500 mt-1">Otomatis sinkron dengan Cloud PRO</div>
         </div>
       </div>
 
@@ -844,7 +844,7 @@ ${routes.map(r => `  # WHM Account Route: ${r.hostname}
               <span>Aturan Ingress Routing (Domain Publik &rarr; Port Lokal Server)</span>
             </h3>
             <p className="text-[11px] text-slate-400 mt-0.5">
-              Setiap kali Anda membuat akun baru di WHM, domain otomatis dirutekan ke port Nginx lokal.
+              Setiap kali Anda membuat akun baru di Cloud PRO, domain otomatis dirutekan ke port Nginx lokal.
             </p>
           </div>
           <span className="text-xs font-mono text-slate-400 tabular-nums">
@@ -910,7 +910,7 @@ ${routes.map(r => `  # WHM Account Route: ${r.hostname}
               <tr>
                 <th className="px-4 py-3">Domain Publik (Cloudflare)</th>
                 <th className="px-4 py-3">Tujuan Servis Lokal</th>
-                <th className="px-4 py-3">Akun WHM / cPanel</th>
+                <th className="px-4 py-3">Akun Cloud PRO / CloudPanel</th>
                 <th className="px-4 py-3">Datacenter Edge</th>
                 <th className="px-4 py-3">Latensi RTT</th>
                 <th className="px-4 py-3">Enkripsi SSL</th>

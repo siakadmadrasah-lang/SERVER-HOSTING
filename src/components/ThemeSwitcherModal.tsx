@@ -117,7 +117,7 @@ export const ThemeSwitcherModal: React.FC<ThemeSwitcherModalProps> = ({
                       className="px-2 py-0.5 rounded text-[9px] font-mono text-white font-semibold"
                       style={{ backgroundColor: theme.primaryColor }}
                     >
-                      WHM / cPanel
+                      Cloud PRO / CloudPanel
                     </div>
                   </div>
                 </div>

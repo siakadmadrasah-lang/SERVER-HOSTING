@@ -82,7 +82,7 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({
       role: 'reseller',
       user: DEFAULT_RESELLER_USER,
       icon: Building2,
-      title: 'Reseller Hosting (WHM Lite)',
+      title: 'Reseller Hosting (Cloud PRO Lite)',
       subtitle: 'Mitra Reseller (Kelola Klien Sendiri)',
       highlight: '6 Modul Reseller',
       features: [
@@ -109,11 +109,11 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({
       role: 'client',
       user: DEFAULT_CLIENT_USER,
       icon: UserCheck,
-      title: 'Klien Hosting (cPanel)',
+      title: 'Klien Hosting (CloudPanel)',
       subtitle: 'Pelanggan Akhir (Self-Service Mandiri)',
-      highlight: '5 Modul cPanel',
+      highlight: '5 Modul CloudPanel',
       features: [
-        'Dasbor cPanel: Pantau kuota disk & bandwidth',
+        'Dasbor CloudPanel: Pantau kuota disk & bandwidth',
         'Manajemen Domain & 1-Click Installer WordPress',
         'File Manager folder website (/public_html)',
         'Kelola Database MySQL & phpMyAdmin',
@@ -149,7 +149,7 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({
                 Simulasi Peran & Akses Login (RBAC)
               </h2>
               <p className="text-xs text-slate-400">
-                Pilih peran untuk menguji batasan menu dan hak akses seperti di WHM/cPanel
+                Pilih peran untuk menguji batasan menu dan hak akses seperti di Cloud PRO/CloudPanel
               </p>
             </div>
           </div>
@@ -288,7 +288,7 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({
 
         {/* Footer info */}
         <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-          <span>Sistem isolasi multi-tenant WHM + cPanel standar industri</span>
+          <span>Sistem isolasi multi-tenant Cloud PRO + CloudPanel standar industri</span>
           <button
             onClick={onClose}
             className="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-colors"
