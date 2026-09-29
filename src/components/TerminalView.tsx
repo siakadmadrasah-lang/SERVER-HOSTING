@@ -235,7 +235,7 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ currentLang, onOpenS
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <span className="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
               <ArrowDownToLine className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Kode Perintah Update di Web Terminal HP (Tanpa Sudo) &amp; PuTTY/Termius:</span>
+              <span>Skrip Sinkronisasi Rilis Produksi:</span>
             </span>
             <button
               type="button"
@@ -248,12 +248,12 @@ export const TerminalView: React.FC<TerminalViewProps> = ({ currentLang, onOpenS
               {copiedId === 'ssh-oneliner-update' ? (
                 <>
                   <Check className="w-3.5 h-3.5" />
-                  <span>Kode Terminal Tersalin!</span>
+                  <span>Skrip Tersalin</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5" />
-                  <span>Salin Kode Update Terminal</span>
+                  <span>Salin Skrip Sinkronisasi</span>
                 </>
               )}
             </button>

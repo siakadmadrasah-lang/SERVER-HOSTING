@@ -456,15 +456,14 @@ $whoami = @shell_exec('whoami 2>/dev/null') ?: 'server';
 <!-- QUICK ACTION SHORTCUTS (Mobile Friendly) -->
 <div class="bg-slate-900/60 border-b border-slate-800 px-3 py-2 overflow-x-auto">
     <div class="flex items-center gap-1.5 min-w-max text-[11px] font-mono">
-        <span class="text-slate-500 text-[10px] mr-1 hidden sm:inline">Shortcut Cepat:</span>
-        <button onclick="runShortcut('cd /var/www/html/siakad && git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main && git show FETCH_HEAD:update.sh | bash')" class="px-2.5 py-1 bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 rounded border border-emerald-500/50 font-bold">⚡ Update Panel (Tanpa Sudo)</button>
-        <button onclick="runShortcut('hostname -I')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded border border-slate-700">hostname -I</button>
-        <button onclick="runShortcut('git status')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-emerald-300 rounded border border-slate-700">git status</button>
-        <button onclick="runShortcut('php -v && php -m | grep -E \"ionCube|curl\"')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-teal-300 rounded border border-slate-700">cek ionCube &amp; cURL</button>
-        <button onclick="runShortcut('service nginx status')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded border border-slate-700">nginx status</button>
-        <button onclick="runShortcut('free -h')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-purple-300 rounded border border-slate-700">free -h</button>
-        <button onclick="runShortcut('df -h')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-blue-300 rounded border border-slate-700">df -h</button>
-        <button onclick="runShortcut('ls -la')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700">ls -la</button>
+        <span class="text-slate-500 text-[10px] mr-1 hidden sm:inline">Tindakan Cepat:</span>
+        <button onclick="runShortcut('cd /var/www/html/siakad && git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main && git show FETCH_HEAD:update.sh | bash')" class="px-2.5 py-1 bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 rounded border border-emerald-500/50 font-bold">Sinkronisasi Sistem</button>
+        <button onclick="runShortcut('hostname -I')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded border border-slate-700">Informasi IP</button>
+        <button onclick="runShortcut('git status')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-emerald-300 rounded border border-slate-700">Status Repositori</button>
+        <button onclick="runShortcut('php -v && php -m | grep -E \"ionCube|curl\"')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-teal-300 rounded border border-slate-700">Status Modul PHP</button>
+        <button onclick="runShortcut('service nginx status')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded border border-slate-700">Status Web Server</button>
+        <button onclick="runShortcut('free -h')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-purple-300 rounded border border-slate-700">Kapasitas Memori</button>
+        <button onclick="runShortcut('df -h')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-blue-300 rounded border border-slate-700">Kapasitas Disk</button>
     </div>
 </div>
 
@@ -495,9 +494,8 @@ $whoami = @shell_exec('whoami 2>/dev/null') ?: 'server';
         <div id="terminal-output" class="flex-1 p-3 sm:p-4 overflow-y-auto space-y-4 text-slate-200">
             <!-- Welcome Banner -->
             <div class="p-3 bg-slate-900/60 border border-slate-800/80 rounded-lg text-[11px] leading-relaxed text-slate-400">
-                <span class="text-emerald-400 font-bold">✨ Cloud PRO Web Terminal v3.5 (Browser SSH Active — Anti Error Sudo)</span><br>
-                Terminal web ini berjalan di atas user <code class="text-sky-300">www-data</code> dan telah dilengkapi <strong>Smart Sudo Fallback</strong>.<br>
-                Untuk menarik update terbaru langsung dari HP tanpa error sudo, klik tombol hijau <strong class="text-emerald-300">⚡ update.sh</strong> di bawah!
+                <span class="text-emerald-400 font-bold">Cloud PRO Web Terminal v3.5 — Konsol Administrasi Sistem</span><br>
+                Antarmuka konsol web terenkripsi yang terhubung langsung ke lingkungan sistem operasi Ubuntu Server.
             </div>
 
             <!-- Existing Session History -->
@@ -522,9 +520,9 @@ $whoami = @shell_exec('whoami 2>/dev/null') ?: 'server';
 
         <!-- Mobile Touch Keyboard Bar -->
         <div class="bg-slate-900 border-t border-slate-800/80 px-2 py-1 flex items-center gap-1.5 overflow-x-auto text-[11px] whitespace-nowrap">
-            <button type="button" onclick="runShortcut('cd /var/www/html/siakad && git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main && git show FETCH_HEAD:update.sh | bash')" class="px-2.5 py-1 bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/50 text-emerald-300 font-bold rounded shrink-0 flex items-center gap-1">⚡ update.sh</button>
-            <button type="button" onclick="runShortcut('git status')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-teal-300 rounded shrink-0">git status</button>
-            <button type="button" onclick="runShortcut('hostname -I')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-purple-300 rounded shrink-0">IP</button>
+            <button type="button" onclick="runShortcut('cd /var/www/html/siakad && git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main && git show FETCH_HEAD:update.sh | bash')" class="px-2.5 py-1 bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/50 text-emerald-300 font-bold rounded shrink-0 flex items-center gap-1">Sinkronisasi Sistem</button>
+            <button type="button" onclick="runShortcut('git status')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-teal-300 rounded shrink-0">Status Git</button>
+            <button type="button" onclick="runShortcut('hostname -I')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-purple-300 rounded shrink-0">Info IP</button>
             <button type="button" onclick="insertText('sudo ')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-amber-400 rounded shrink-0">sudo</button>
             <button type="button" onclick="insertText('cd ')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded shrink-0">cd</button>
             <button type="button" onclick="insertText('/')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded shrink-0">/</button>

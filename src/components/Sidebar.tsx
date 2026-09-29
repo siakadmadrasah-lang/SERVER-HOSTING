@@ -128,27 +128,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     { 
       id: 'vps_cluster', 
-      category: 'whm_reseller',
-      label: 'Multi-VPS & KVM Node', 
-      badge: 'KVM/SSH' 
-    },
-    { 
-      id: 'billing_whmcs', 
-      category: 'whm_reseller',
-      label: 'Billing WHMCS & QRIS', 
-      badge: 'Bisnis' 
+      category: 'vps_infrastructure',
+      label: 'Node & Virtualisasi VPS', 
+      badge: 'KVM' 
     },
     { 
       id: 'whm_accounts', 
       category: 'whm_reseller',
-      label: currentUser.role === 'reseller' ? 'Klien Reseller' : t.nav.whm_accounts, 
+      label: currentUser.role === 'reseller' ? 'Akun Klien Hosting' : 'Manajemen Akun WHM', 
       count: accountsCount 
+    },
+    { 
+      id: 'billing_whmcs', 
+      category: 'whm_reseller',
+      label: 'Manajemen Billing', 
+      badge: 'QRIS' 
     },
     { 
       id: 'reseller_branding', 
       category: 'whm_reseller',
-      label: 'Branding Reseller', 
-      badge: 'Pro' 
+      label: 'Identitas White-Label', 
+      badge: 'Brand' 
     },
     { 
       id: 'security', 
@@ -182,14 +182,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
     }
   };
 
-  // Order categories so Dashboard / System is accessible or group cleanly
+  // Order categories so VPS Infrastructure and WHM Hosting are cleanly separated
   const orderedCategories: { id: HostingCategoryKey; label: string }[] = [
-    { id: 'system_automation', label: 'PUSAT KONTROL & TERMINAL' },
-    { id: 'whm_reseller', label: 'BISNIS VPS, WHM & BILLING' },
-    { id: 'domains_network', label: 'DOMAIN & CLOUD INGRESS' },
-    { id: 'files_storage', label: 'BERKAS & PENYIMPANAN' },
-    { id: 'databases_software', label: 'DATABASE & PERANGKAT LUNAK' },
-    { id: 'security_monitoring', label: 'KEAMANAN & LOG SISTEM' }
+    { id: 'system_automation', label: 'SISTEM INTI & KONSOL' },
+    { id: 'vps_infrastructure', label: 'INFRASTRUKTUR VPS & HYPERVISOR' },
+    { id: 'whm_reseller', label: 'MANAJEMEN HOSTING WHM & BILLING' },
+    { id: 'domains_network', label: 'DOMAIN & JARINGAN CLOUD' },
+    { id: 'files_storage', label: 'PENYIMPANAN, EMAIL & CADANGAN' },
+    { id: 'databases_software', label: 'BASIS DATA & RUNTIME PHP' },
+    { id: 'security_monitoring', label: 'KEAMANAN SSL & AUDIT LOG' }
   ];
 
   const navContent = (
@@ -283,7 +284,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <div className="flex items-center gap-2.5">
                 <HostingMenuIcon id="theme_studio" size="sm" />
-                <span>Pilihan Tema Server</span>
+                <span>Tema Antarmuka</span>
               </div>
               <Palette className="w-3.5 h-3.5 text-sky-400" />
             </button>
@@ -299,7 +300,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <div className="flex items-center gap-2.5">
                 <HostingMenuIcon id="git_sync" size="sm" />
-                <span>Update &amp; Git Sync</span>
+                <span>Sinkronisasi Sistem</span>
               </div>
               <ArrowDownToLine className="w-3.5 h-3.5 text-emerald-400" />
             </button>

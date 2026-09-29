@@ -299,26 +299,26 @@ export const SyncModal: React.FC<SyncModalProps> = ({
             Opsi Eksekusi Alternatif (Bila ingin memantau via CLI)
           </div>
 
-          {/* Opsi 1: Web Terminal Browser & SSH Universal (Tanpa Error Sudo) */}
+          {/* Opsi 1: Sinkronisasi Terpadu */}
           <div className="p-3 bg-slate-950/80 border border-slate-800 rounded-xl space-y-2">
             <div className="flex items-center justify-between font-bold text-white">
               <span className="flex items-center gap-1.5 text-sky-300">
                 <Terminal className="w-3.5 h-3.5 text-sky-400" />
-                <span>Opsi 1: Perintah Update di Web Terminal HP (Tanpa Sudo / Anti-Error www-data)</span>
+                <span>Skrip Sinkronisasi Rilis Produksi</span>
               </span>
               <button
                 onClick={() => copyToClipboard('cd /var/www/html/siakad && git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main && git show FETCH_HEAD:update.sh | bash', 'cmd1')}
                 className="text-[11px] text-sky-400 hover:text-sky-300 flex items-center gap-1 px-2 py-0.5 bg-slate-900 rounded border border-slate-800"
               >
                 {copiedCmd === 'cmd1' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-                <span>{copiedCmd === 'cmd1' ? 'Tersalin' : 'Salin Kode'}</span>
+                <span>{copiedCmd === 'cmd1' ? 'Tersalin' : 'Salin Skrip'}</span>
               </button>
             </div>
             <code className="block p-2 bg-slate-900 border border-slate-800 rounded font-mono text-[11px] text-emerald-400 select-all break-all">
               cd /var/www/html/siakad &amp;&amp; git fetch https://github.com/siakadmadrasah-lang/SERVER-HOSTING.git main &amp;&amp; git show FETCH_HEAD:update.sh | bash
             </code>
             <p className="text-[10px] text-slate-500">
-              Kompatibel 100% di Web Terminal Browser (<code className="text-sky-400">www-data</code> tanpa sudo) maupun di PuTTY/Termius SSH.
+              Kompatibel pada antarmuka Konsol Web maupun klien SSH eksternal.
             </p>
           </div>
 

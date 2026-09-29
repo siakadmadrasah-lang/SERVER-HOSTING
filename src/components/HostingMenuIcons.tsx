@@ -9,6 +9,7 @@ export type HostingMenuIconId =
   | 'role_switcher';
 
 export type HostingCategoryKey =
+  | 'vps_infrastructure'
   | 'whm_reseller'
   | 'domains_network'
   | 'files_storage'
@@ -42,10 +43,30 @@ export interface HostingMenuItemMeta {
 
 export const HOSTING_CATEGORIES: HostingCategoryMeta[] = [
   {
+    id: 'vps_infrastructure',
+    title: 'Manajemen Infrastruktur VPS & Hypervisor',
+    subtitle: 'Modul terisolasi untuk orkestrasi node server fisik, virtualisasi KVM/Proxmox, instance VPS klien, dan container Docker',
+    whmLabel: 'VPS INFRASTRUCTURE ENGINE',
+    accentFrom: '#2563eb',
+    accentTo: '#4f46e5',
+    borderClass: 'border-indigo-500/30',
+    textClass: 'text-indigo-400'
+  },
+  {
+    id: 'whm_reseller',
+    title: 'Manajemen Web Hosting (WHM) & Billing',
+    subtitle: 'Modul terisolasi untuk administrasi akun shared hosting cPanel, alokasi kuota NVMe, penagihan otomatis, dan identitas mitra',
+    whmLabel: 'WEB HOSTING & BILLING ENGINE',
+    accentFrom: '#8b5cf6',
+    accentTo: '#6366f1',
+    borderClass: 'border-violet-500/30',
+    textClass: 'text-violet-400'
+  },
+  {
     id: 'domains_network',
-    title: 'Domain, Website & Cloud Ingress',
-    subtitle: 'Kelola virtual host, installer otomatis WordPress/Laravel, Cloudflare Zero Trust Tunnel, dan DNS',
-    whmLabel: 'DOMAINS & INGRESS',
+    title: 'Domain, Zona DNS & Jaringan Cloud',
+    subtitle: 'Pengelolaan virtual host domain, katalog instalasi aplikasi web, Cloudflare Zero Trust Ingress, dan nameserver utama',
+    whmLabel: 'DOMAINS & NETWORK',
     accentFrom: '#0ea5e9',
     accentTo: '#2563eb',
     borderClass: 'border-sky-500/30',
@@ -53,9 +74,9 @@ export const HOSTING_CATEGORIES: HostingCategoryMeta[] = [
   },
   {
     id: 'files_storage',
-    title: 'Berkas & Cadangan Penyimpanan',
-    subtitle: 'Manajer berkas web terintegrasi, editor kode langsung, upload ZIP, dan snapshot backup S3/NVMe',
-    whmLabel: 'FILES & BACKUPS',
+    title: 'Penyimpanan Berkas, Email & Cadangan',
+    subtitle: 'Eksplorasi direktori web, layanan kotak surat bisnis, akses protokol FTP, serta penyimpanan snapshot cadangan otomatis',
+    whmLabel: 'STORAGE & MAIL',
     accentFrom: '#f59e0b',
     accentTo: '#ea580c',
     borderClass: 'border-amber-500/30',
@@ -63,29 +84,19 @@ export const HOSTING_CATEGORIES: HostingCategoryMeta[] = [
   },
   {
     id: 'databases_software',
-    title: 'Basis Data, PHP & Web Server',
-    subtitle: 'Cluster MySQL/PostgreSQL/Redis, SQL Query Studio, MultiPHP Manager (PHP 8.3), dan konfigurasi Nginx',
-    whmLabel: 'DATABASES & SOFTWARE',
+    title: 'Basis Data, Runtime PHP & Web Server',
+    subtitle: 'Administrasi cluster MySQL/PostgreSQL, konfigurasi versi PHP beserta modul ionCube dan cURL, serta arsitektur Nginx',
+    whmLabel: 'DATABASES & RUNTIME',
     accentFrom: '#10b981',
     accentTo: '#0d9488',
     borderClass: 'border-emerald-500/30',
     textClass: 'text-emerald-400'
   },
   {
-    id: 'whm_reseller',
-    title: 'Bisnis VPS, Cluster Node, WHM & Billing',
-    subtitle: 'Koneksi Multi-VPS & Proxmox KVM, Billing WHMCS + QRIS Otomatis, pembuatan akun cPanel klien, dan white-label reseller',
-    whmLabel: 'VPS CLUSTER & WHM BILLING',
-    accentFrom: '#8b5cf6',
-    accentTo: '#6366f1',
-    borderClass: 'border-violet-500/30',
-    textClass: 'text-violet-400'
-  },
-  {
     id: 'security_monitoring',
-    title: 'Keamanan SSL, Firewall & Log Sistem',
-    subtitle: 'Sertifikat SSL/TLS Let’s Encrypt & Origin CA, proteksi DDoS/UFW Firewall, dan pemantauan log real-time',
-    whmLabel: 'SECURITY & METRICS',
+    title: 'Keamanan SSL, Firewall & Audit Sistem',
+    subtitle: 'Otoritas sertifikat enkripsi TLS/SSL, perlindungan trafik jaringan UFW, dan rekaman aktivitas log server terpusat',
+    whmLabel: 'SECURITY & AUDIT',
     accentFrom: '#f43f5e',
     accentTo: '#e11d48',
     borderClass: 'border-rose-500/30',
@@ -93,9 +104,9 @@ export const HOSTING_CATEGORIES: HostingCategoryMeta[] = [
   },
   {
     id: 'system_automation',
-    title: 'Sistem Root, Terminal & Otomasi Server',
-    subtitle: 'Web SSH Terminal, panduan PuTTY/Termius, Cron Jobs daemon, sinkronisasi GitHub, dan kustomisasi tema',
-    whmLabel: 'SERVER CONFIGURATION',
+    title: 'Sistem Inti, Konsol & Otomasi',
+    subtitle: 'Pusat telemetri perangkat keras, akses konsol SSH, penjadwalan tugas otomatis, sinkronisasi rilis, dan tema antarmuka',
+    whmLabel: 'CORE SYSTEM',
     accentFrom: '#06b6d4',
     accentTo: '#3b82f6',
     borderClass: 'border-cyan-500/30',
@@ -104,128 +115,29 @@ export const HOSTING_CATEGORIES: HostingCategoryMeta[] = [
 ];
 
 export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
-  // Category 1: Domains, Website & Cloud Ingress
-  {
-    id: 'websites',
-    tab: 'websites',
-    actionType: 'tab',
-    category: 'domains_network',
-    title: 'Manajer Website & Domain',
-    clientTitle: 'Situs Web & Domain Saya',
-    resellerTitle: 'Situs Web Klien',
-    description: 'Kelola domain aktif, status virtual host, trafik bulanan, dan sertifikat HTTPS.',
-    badge: 'VHost',
-    allowedRoles: ['root', 'reseller', 'client']
-  },
-  {
-    id: 'installer',
-    actionType: 'installer',
-    category: 'domains_network',
-    title: 'Softaculous 1-Click Installer',
-    description: 'Instalasi otomatis WordPress, Laravel, Node.js, Django, atau repositori Git dalam hitungan detik.',
-    badge: 'Auto-Install',
-    allowedRoles: ['root', 'reseller', 'client']
-  },
-  {
-    id: 'tunnel',
-    tab: 'tunnel',
-    actionType: 'tab',
-    category: 'domains_network',
-    title: 'Cloudflare Zero Trust Tunnel',
-    description: 'Publikasikan domain ke internet publik tanpa IP Statis dan tanpa port forwarding router.',
-    badge: 'No-IP Publik',
-    allowedRoles: ['root']
-  },
-  {
-    id: 'dns_network',
-    tab: 'dns_network',
-    actionType: 'tab',
-    category: 'domains_network',
-    title: 'Nameserver WHM, DNS Zone & Subdomain',
-    description: 'Atur Nameserver utama (ns1–ns4), Child Glue Record, DNS Zone (A/CNAME/MX/TXT), Subdomain, Redirect 301 & SPF/DKIM.',
-    badge: 'NS1/NS2 + DNS',
-    allowedRoles: ['root', 'reseller', 'client']
-  },
-
-  // Category 2: Files, FTP & Backup Storage
-  {
-    id: 'files',
-    tab: 'files',
-    actionType: 'tab',
-    category: 'files_storage',
-    title: 'Web File Manager & Code Editor',
-    clientTitle: 'File Manager public_html',
-    description: 'Unggah berkas/ZIP, kelola folder /var/www/html, ubah permission chmod, dan edit kode langsung.',
-    badge: 'Explorer',
-    allowedRoles: ['root', 'reseller', 'client']
-  },
-  {
-    id: 'email_ftp',
-    tab: 'email_ftp',
-    actionType: 'tab',
-    category: 'files_storage',
-    title: 'Email Server, Webmail & Akun FTP',
-    clientTitle: 'Email, Webmail & Akun FTP',
-    description: 'Kelola kotak masuk Email (@domain), Roundcube Webmail, Forwarder, Akun FTP Pure-FTPd, Hotlink & Proteksi Folder.',
-    badge: 'Mail + FTP',
-    allowedRoles: ['root', 'reseller', 'client']
-  },
-  {
-    id: 'backups',
-    tab: 'backups',
-    actionType: 'tab',
-    category: 'files_storage',
-    title: 'Backup Wizard & Cloud S3 Vault',
-    clientTitle: 'Cadangan Website & SQL',
-    description: 'Buat snapshot database & berkas web otomatis ke penyimpanan objek S3 atau NVMe lokal.',
-    badge: 'Snapshot',
-    allowedRoles: ['root', 'reseller', 'client']
-  },
-
-  // Category 3: Databases, PHP & Web Server
-  {
-    id: 'databases',
-    tab: 'databases',
-    actionType: 'tab',
-    category: 'databases_software',
-    title: 'Database MySQL & SQL Studio',
-    clientTitle: 'Basis Data MySQL & phpMyAdmin',
-    resellerTitle: 'Database Klien',
-    description: 'Buat database terpusat, atur hak akses user MySQL/PostgreSQL, dan jalankan query SQL interaktif.',
-    badge: 'phpMyAdmin',
-    allowedRoles: ['root', 'reseller', 'client']
-  },
-  {
-    id: 'php_settings',
-    tab: 'php_settings',
-    actionType: 'tab',
-    category: 'databases_software',
-    title: 'MultiPHP, ionCube & Ekstensi (cURL)',
-    description: 'Kelola PHP (7.4–8.4), ionCube Loader, SourceGuardian, cURL, GD, Imagick, Zip, Intl, SOAP & php.ini.',
-    badge: 'ionCube + cURL',
-    allowedRoles: ['root', 'reseller', 'client']
-  },
-  {
-    id: 'vhosts',
-    tab: 'vhosts',
-    actionType: 'tab',
-    category: 'databases_software',
-    title: 'Konfigurasi Nginx & Reverse Proxy',
-    description: 'Inspeksi dan sesuaikan blok server Nginx, FastCGI pass socket, serta muat ulang daemon web.',
-    badge: 'Nginx',
-    allowedRoles: ['root']
-  },
-
-  // Category 4: WHM, Multi-VPS Cluster & Billing Functions
+  // Category 1: Dedicated VPS Infrastructure Engine
   {
     id: 'vps_cluster',
     tab: 'vps_cluster',
     actionType: 'tab',
-    category: 'whm_reseller',
-    title: 'Multi-VPS Cluster, KVM & Docker Node',
+    category: 'vps_infrastructure',
+    title: 'Manajemen Node & Virtualisasi VPS',
     resellerTitle: 'Manajemen Instance VPS Klien',
-    description: 'Hubungkan banyak server VPS via SSH Bridge, kelola sewa VPS KVM/Proxmox (Start/Stop/Rebuild OS/VNC), Docker & Migrasi WHM.',
-    badge: 'Multi-VPS + KVM',
+    description: 'Pusat kendali terisolasi untuk cluster node server, mesin virtual KVM/LXC, manajemen container Docker, dan migrasi sistem.',
+    badge: 'KVM Engine',
+    allowedRoles: ['root', 'reseller']
+  },
+
+  // Category 2: Dedicated WHM Web Hosting & Billing Engine
+  {
+    id: 'whm_accounts',
+    tab: 'whm_accounts',
+    actionType: 'tab',
+    category: 'whm_reseller',
+    title: 'Manajemen Akun Hosting (WHM)',
+    resellerTitle: 'Manajemen Akun Klien Hosting',
+    description: 'Sistem administrasi akun cPanel terisolasi, alokasi paket penyimpanan NVMe, manajemen status layanan, dan akses panel klien.',
+    badge: 'Hosting Engine',
     allowedRoles: ['root', 'reseller']
   },
   {
@@ -233,21 +145,10 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     tab: 'billing_whmcs',
     actionType: 'tab',
     category: 'whm_reseller',
-    title: 'Billing WHMCS, Paket & Payment QRIS',
-    resellerTitle: 'Billing & Tagihan Klien',
-    description: 'Kelola invoice langganan Hosting & VPS, katalog harga paket, pengingat WhatsApp otomatis, dan payment gateway QRIS/VA.',
-    badge: 'WHMCS + QRIS',
-    allowedRoles: ['root', 'reseller']
-  },
-  {
-    id: 'whm_accounts',
-    tab: 'whm_accounts',
-    actionType: 'tab',
-    category: 'whm_reseller',
-    title: 'Manajer Akun cPanel (WHM)',
-    resellerTitle: 'Kelola Akun Klien Reseller',
-    description: 'Buat akun hosting cPanel baru, kelola kuota disk NVMe, suspend/unsuspend, dan login one-click.',
-    badge: 'WHM Core',
+    title: 'Manajemen Billing & Lisensi Layanan',
+    resellerTitle: 'Manajemen Tagihan Pelanggan',
+    description: 'Sistem faktur berlangganan hosting dan VPS, katalog harga paket komersial, serta integrasi gerbang pembayaran QRIS dan Virtual Account.',
+    badge: 'Billing Suite',
     allowedRoles: ['root', 'reseller']
   },
   {
@@ -255,8 +156,8 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     tab: 'reseller_branding',
     actionType: 'tab',
     category: 'whm_reseller',
-    title: 'White-Label Branding Studio',
-    description: 'Kustomisasi nama perusahaan hosting, logo panel, dan identitas visual untuk klien Anda.',
+    title: 'Identitas Brand White-Label',
+    description: 'Konfigurasi profil perusahaan penyedia layanan, logo resmi organisasi, serta tata warna khusus pada portal pelanggan.',
     badge: 'White-Label',
     allowedRoles: ['root', 'reseller']
   },
@@ -264,21 +165,133 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     id: 'role_switcher',
     actionType: 'role',
     category: 'whm_reseller',
-    title: 'Simulasi Peran & Hak Akses RBAC',
-    description: 'Uji tampilan panel dari sudut pandang Root Super Admin, Mitra Reseller WHM, atau Klien cPanel.',
+    title: 'Manajemen Peran & Akses (RBAC)',
+    description: 'Pengaturan tingkat otoritas akses antara Administrator Utama (Root), Mitra Reseller WHM, dan Pengguna Akhir cPanel.',
     badge: 'Multi-Role',
     allowedRoles: ['root', 'reseller', 'client']
   },
 
-  // Category 5: Security & Monitoring
+  // Category 3: Domains, DNS & Cloud Ingress
+  {
+    id: 'websites',
+    tab: 'websites',
+    actionType: 'tab',
+    category: 'domains_network',
+    title: 'Manajer Domain & Virtual Host',
+    clientTitle: 'Domain & Situs Web',
+    resellerTitle: 'Domain & Situs Klien',
+    description: 'Administrasi domain aktif, pemetaan direktori virtual host, pemantauan trafik bulanan, dan status enkripsi HTTPS.',
+    badge: 'Virtual Host',
+    allowedRoles: ['root', 'reseller', 'client']
+  },
+  {
+    id: 'installer',
+    actionType: 'installer',
+    category: 'domains_network',
+    title: 'Katalog Instalasi Aplikasi Web',
+    description: 'Pustaka penyediaan otomatis untuk CMS WordPress, framework Laravel, Node.js, SIAKAD/RDM, dan integrasi repositori Git.',
+    badge: 'App Catalog',
+    allowedRoles: ['root', 'reseller', 'client']
+  },
+  {
+    id: 'tunnel',
+    tab: 'tunnel',
+    actionType: 'tab',
+    category: 'domains_network',
+    title: 'Cloudflare Zero Trust Ingress',
+    description: 'Arsitektur publikasi jaringan terenkripsi ke jaringan edge global tanpa kebutuhan IP publik statis maupun pembukaan port router.',
+    badge: 'Zero Trust',
+    allowedRoles: ['root']
+  },
+  {
+    id: 'dns_network',
+    tab: 'dns_network',
+    actionType: 'tab',
+    category: 'domains_network',
+    title: 'Nameserver WHM & Editor Zona DNS',
+    description: 'Konfigurasi nameserver otoritatif (NS1–NS4), catatan Glue IP, rekaman A/CNAME/MX/TXT, manajemen subdomain, dan autentikasi DKIM/SPF.',
+    badge: 'DNS Studio',
+    allowedRoles: ['root', 'reseller', 'client']
+  },
+
+  // Category 4: Files, Mail & Backup Storage
+  {
+    id: 'files',
+    tab: 'files',
+    actionType: 'tab',
+    category: 'files_storage',
+    title: 'Manajer Berkas & Editor Kode',
+    clientTitle: 'Manajer Berkas Direktori Web',
+    description: 'Sistem manajemen berkas direktori publik, ekstraksi arsip ZIP, pengaturan izin akses berkas, dan penyuntingan kode sumber.',
+    badge: 'File Explorer',
+    allowedRoles: ['root', 'reseller', 'client']
+  },
+  {
+    id: 'email_ftp',
+    tab: 'email_ftp',
+    actionType: 'tab',
+    category: 'files_storage',
+    title: 'Layanan Email Bisnis & Akun FTP',
+    clientTitle: 'Kotak Surat Email & Akses FTP',
+    description: 'Administrasi akun email domain, antarmuka Roundcube Webmail, penerusan pesan, akun transfer Pure-FTPd, dan proteksi direktori.',
+    badge: 'Mail & FTP',
+    allowedRoles: ['root', 'reseller', 'client']
+  },
+  {
+    id: 'backups',
+    tab: 'backups',
+    actionType: 'tab',
+    category: 'files_storage',
+    title: 'Pusat Cadangan & Pemulihan Data',
+    clientTitle: 'Cadangan Situs & Basis Data',
+    description: 'Manajemen salinan cadangan terjadwal untuk basis data dan berkas aplikasi ke penyimpanan objek S3 maupun array NVMe lokal.',
+    badge: 'Backup Vault',
+    allowedRoles: ['root', 'reseller', 'client']
+  },
+
+  // Category 5: Databases, PHP & Web Server
+  {
+    id: 'databases',
+    tab: 'databases',
+    actionType: 'tab',
+    category: 'databases_software',
+    title: 'Basis Data MySQL & Studio SQL',
+    clientTitle: 'Basis Data MySQL & phpMyAdmin',
+    resellerTitle: 'Basis Data Pelanggan',
+    description: 'Pengelolaan cluster basis data terpusat, otorisasi hak akses pengguna SQL, serta antarmuka eksekusi kueri interaktif.',
+    badge: 'SQL Cluster',
+    allowedRoles: ['root', 'reseller', 'client']
+  },
+  {
+    id: 'php_settings',
+    tab: 'php_settings',
+    actionType: 'tab',
+    category: 'databases_software',
+    title: 'Manajer MultiPHP & Modul Ekstensi',
+    description: 'Konfigurasi runtime PHP (7.4–8.4), dekoder ionCube Loader, SourceGuardian, pustaka cURL, GD, Imagick, Zip, Intl, serta parameter php.ini.',
+    badge: 'PHP · ionCube',
+    allowedRoles: ['root', 'reseller', 'client']
+  },
+  {
+    id: 'vhosts',
+    tab: 'vhosts',
+    actionType: 'tab',
+    category: 'databases_software',
+    title: 'Arsitektur Nginx & Reverse Proxy',
+    description: 'Manajemen konfigurasi blok server Nginx, soket FastCGI PHP-FPM, serta pengaturan penyeimbang beban trafik web.',
+    badge: 'Nginx Engine',
+    allowedRoles: ['root']
+  },
+
+  // Category 6: Security & Monitoring
   {
     id: 'security',
     tab: 'security',
     actionType: 'tab',
     category: 'security_monitoring',
-    title: 'SSL/TLS Manager & Firewall UFW',
-    description: 'Kelola sertifikat AutoSSL Let’s Encrypt, aturan port firewall Ubuntu, dan proteksi brute-force.',
-    badge: 'AutoSSL',
+    title: 'Sertifikat SSL/TLS & Firewall UFW',
+    description: 'Manajemen sertifikat keamanan AutoSSL Let’s Encrypt, otoritas Origin CA, aturan penyaringan port jaringan, dan mitigasi ancaman.',
+    badge: 'SSL & WAF',
     allowedRoles: ['root']
   },
   {
@@ -286,21 +299,21 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     tab: 'logs',
     actionType: 'tab',
     category: 'security_monitoring',
-    title: 'Log Analitik & Audit Trail Server',
-    description: 'Pantau access/error log Nginx, aktivitas replikasi MySQL, dan riwayat eksekusi sistem.',
-    badge: 'Syslog',
+    title: 'Log Analitik & Audit Aktivitas',
+    description: 'Pemantauan rekaman akses trafik web, diagnostik kesalahan layanan, replikasi basis data, serta jejak audit operasional sistem.',
+    badge: 'Audit Log',
     allowedRoles: ['root']
   },
 
-  // Category 6: System, Terminal & Automation
+  // Category 7: System, Terminal & Automation
   {
     id: 'terminal',
     tab: 'terminal',
     actionType: 'tab',
     category: 'system_automation',
-    title: 'Web SSH Terminal & Konsol Root',
-    description: 'Jalankan perintah bash Ubuntu langsung dari browser HP/PC serta panduan lengkap Termius & PuTTY.',
-    badge: 'Root CLI',
+    title: 'Konsol Terminal SSH Terpadu',
+    description: 'Antarmuka interaksi baris perintah sistem operasi secara langsung melalui peramban web serta dokumentasi koneksi klien SSH.',
+    badge: 'SSH Console',
     allowedRoles: ['root']
   },
   {
@@ -308,26 +321,26 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     tab: 'cron_jobs',
     actionType: 'tab',
     category: 'system_automation',
-    title: 'Cron Jobs & Penjadwal Otomatis',
-    description: 'Jadwalkan eksekusi skrip berkala untuk backup otomatis, sinkronisasi Git, dan pembersihan cache.',
-    badge: 'Crontab',
+    title: 'Penjadwal Tugas Otomatis (Cron)',
+    description: 'Manajemen penjadwalan otomatisasi tugas sistem untuk pencadangan berkala, pemeliharaan indeks, dan pembersihan berkas sementara.',
+    badge: 'Scheduler',
     allowedRoles: ['root', 'reseller', 'client']
   },
   {
     id: 'git_sync',
     actionType: 'sync',
     category: 'system_automation',
-    title: 'Auto-Sync GitHub & Update VPS',
-    description: 'Tarik pembaruan fitur terbaru dari repositori GitHub langsung ke produksi /var/www/html.',
-    badge: 'Git Sync',
+    title: 'Pembaruan & Sinkronisasi Sistem',
+    description: 'Manajemen rilis versi panel kontrol dan sinkronisasi distribusi pembaruan sistem dari repositori pusat ke server produksi.',
+    badge: 'System Sync',
     allowedRoles: ['root']
   },
   {
     id: 'theme_studio',
     actionType: 'theme',
     category: 'system_automation',
-    title: 'Studio Tema & Tampilan Server',
-    description: 'Ubah suasana warna panel Cloud PRO (cPanel Jupiter, WHM Classic, Cyber Emerald, hingga Mode Terang).',
+    title: 'Personalisasi Tema Antarmuka',
+    description: 'Pengaturan profil visual antarmuka panel kontrol dengan pilihan mode terang profesional maupun mode gelap klasik.',
     badge: '8 Tema',
     allowedRoles: ['root', 'reseller', 'client']
   },
@@ -336,8 +349,8 @@ export const HOSTING_MENU_CATALOG: HostingMenuItemMeta[] = [
     tab: 'dashboard',
     actionType: 'tab',
     category: 'system_automation',
-    title: 'Pusat Metrik & Monitor Hardware',
-    description: 'Pantau beban CPU EPYC, pemakaian RAM ECC, penyimpanan RAID-10 NVMe, dan status daemon.',
+    title: 'Pusat Telemetri & Performa',
+    description: 'Pemantauan indikator kinerja prosesor EPYC, alokasi memori ECC, utilisasi penyimpanan NVMe, dan kesehatan daemon.',
     badge: 'Telemetry',
     allowedRoles: ['root', 'reseller', 'client']
   }

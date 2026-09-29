@@ -576,13 +576,13 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-400">
               <Server className="w-4 h-4" />
-              <span>ENTERPRISE MULTI-SERVER, KVM HYPERVISOR &amp; REMOTE VPS BRIDGE</span>
+              <span>MODUL KHUSUS INFRASTRUKTUR VPS · NAMESPACE TERISOLASI</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-              Pusat Koneksi Multi-VPS, Proxmox/KVM &amp; Cluster Server Hosting
+              Manajemen Node Server, Hypervisor KVM &amp; Instance VPS
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-              Kelola banyak node server VPS (DigitalOcean, Vultr, Baremetal IIX, Proxmox KVM) sekaligus akun shared hosting dari satu panel induk terpusat. Cocok untuk pengusaha penyedia layanan VPS maupun Web Hosting.
+              Sistem manajemen infrastruktur VPS yang beroperasi secara terpisah dari akun shared hosting (WHM/cPanel) untuk menjamin stabilitas resource, keamanan jaringan, dan pencegahan konflik data.
             </p>
           </div>
 
@@ -592,7 +592,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
               className="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold flex items-center gap-2 shadow-sm transition-all active:scale-95"
             >
               <Plus className="w-4 h-4" />
-              <span>Hubungkan Server / VPS Baru</span>
+              <span>Registrasi Node Baru</span>
             </button>
             <button
               onClick={() => {
@@ -602,7 +602,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
               className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-2 shadow-sm transition-all active:scale-95"
             >
               <Cpu className="w-4 h-4" />
-              <span>Deploy VPS Klien (KVM)</span>
+              <span>Alokasi Instance VPS</span>
             </button>
           </div>
         </div>
@@ -656,7 +656,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
           }`}
         >
           <Server className="w-4 h-4" />
-          <span>1. Koneksi Node Server &amp; Remote SSH ({nodes.length})</span>
+          <span>Node Infrastruktur ({nodes.length})</span>
         </button>
 
         <button
@@ -668,7 +668,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
           }`}
         >
           <Cpu className="w-4 h-4" />
-          <span>2. Manajemen Instance VPS Klien ({vpsList.length})</span>
+          <span>Instance Virtualisasi KVM ({vpsList.length})</span>
         </button>
 
         <button
@@ -680,7 +680,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
           }`}
         >
           <Box className="w-4 h-4" />
-          <span>3. Docker Container &amp; Migrasi Antar-Server</span>
+          <span>Container Docker &amp; Migrasi Sistem</span>
         </button>
       </div>
 
@@ -692,10 +692,10 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
                 <KeyRound className="w-4 h-4" />
-                <span>Perintah Sinkronisasi &amp; Koneksi Agent Server Ubuntu (`/var/www/html/siakad`)</span>
+                <span> Agen Sinkronisasi Node Server</span>
               </div>
               <p className="text-xs text-slate-300">
-                Jalankan perintah satu baris ini di terminal SSH VPS Anda untuk menarik pembaruan panel, menginstal ionCube/cURL, dan menyinkronkan daemon:
+                Konfigurasi agen penghubung otomatis untuk menyelaraskan telemetri dan layanan antar-node:
               </p>
               <code className="block mt-2 p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto">
                 {agentInstallCommand}
@@ -708,7 +708,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
                 className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-2 transition-all active:scale-95"
               >
                 {copiedAgentCmd ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                <span>{copiedAgentCmd ? 'Perintah Disalin!' : 'Salin Perintah SSH'}</span>
+                <span>{copiedAgentCmd ? 'Tersalin' : 'Salin Konfigurasi'}</span>
               </button>
               {onOpenTerminal && (
                 <button
@@ -716,7 +716,7 @@ export const VpsClusterView: React.FC<VpsClusterViewProps> = ({
                   className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-all"
                 >
                   <Terminal className="w-4 h-4 text-sky-400" />
-                  <span>Buka Web Terminal</span>
+                  <span>Konsol Terminal</span>
                 </button>
               )}
             </div>

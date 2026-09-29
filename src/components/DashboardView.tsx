@@ -95,19 +95,26 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 }) => {
   const t = translations[currentLang];
 
-  // Category & Search state for WHM / cPanel Categorized Menu Showcase
+  // Category, Engine Mode & Search state for WHM / cPanel / VPS Categorized Menu Showcase
   const [menuSearch, setMenuSearch] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<HostingCategoryKey | 'all'>('all');
+  const [engineWorkspace, setEngineWorkspace] = useState<'unified' | 'hosting_only' | 'vps_only'>('unified');
   const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
 
   const toggleCollapseCategory = (catId: string) => {
     setCollapsedCategories(prev => ({ ...prev, [catId]: !prev[catId] }));
   };
 
-  // Filter menu items allowed for current role & search query
+  // Filter menu items allowed for current role, isolated engine mode & search query
   const visibleMenuItems = useMemo(() => {
     return HOSTING_MENU_CATALOG.filter(item => {
       if (!item.allowedRoles.includes(currentUser.role)) return false;
+      if (engineWorkspace === 'vps_only' && !['vps_infrastructure', 'system_automation', 'security_monitoring'].includes(item.category)) {
+        return false;
+      }
+      if (engineWorkspace === 'hosting_only' && item.category === 'vps_infrastructure') {
+        return false;
+      }
       if (selectedCategory !== 'all' && item.category !== selectedCategory) return false;
       if (!menuSearch.trim()) return true;
       const q = menuSearch.toLowerCase();
@@ -117,7 +124,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         (item.badge && item.badge.toLowerCase().includes(q))
       );
     });
-  }, [currentUser.role, selectedCategory, menuSearch]);
+  }, [currentUser.role, engineWorkspace, selectedCategory, menuSearch]);
 
   const handleMenuCardClick = (item: HostingMenuItemMeta) => {
     if (item.actionType === 'installer') {
@@ -155,23 +162,25 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     return item.title;
   };
 
-  // Reusable WHM / cPanel Categorized Menu Showcase Block
+  // Reusable WHM / cPanel / VPS Categorized Menu Showcase Block
   const renderCategorizedHostingMenus = () => (
     <div className="space-y-4">
-      {/* Section Header + Search & Category Filter */}
+      {/* Section Header + Dual-Engine Isolation Switcher + Search */}
       <div className="p-4 sm:p-5 bg-slate-900 border border-slate-800 rounded-2xl space-y-3.5">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           <div>
             <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-sky-400 font-mono mb-0.5">
-              <span className="whitespace-nowrap">WHM &amp; CPANEL MODULE DIRECTORY</span>
+              <span className="whitespace-nowrap">DIREKTORI MODUL TERISOLASI</span>
               <span>·</span>
-              <span className="whitespace-nowrap">{visibleMenuItems.length} FITUR AKTIF</span>
+              <span className="text-emerald-400 whitespace-nowrap">ANTI-CRASH DATA GUARD AKTIF</span>
+              <span>·</span>
+              <span className="whitespace-nowrap">{visibleMenuItems.length} MODUL</span>
             </div>
             <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
-              Pusat Menu &amp; Modul Server Berdasarkan Kategori
+              Arsitektur Modul Manajemen Hosting &amp; Infrastruktur VPS
             </h2>
             <p className="text-xs text-slate-400 mt-0.5">
-              Pilih fitur pengelolaan website, database, nameserver DNS, ionCube/cURL, email, hingga terminal root.
+              Setiap modul manajemen VPS dan manajemen Web Hosting berjalan pada namespace penyimpanan terpisah agar bebas bentrok data.
             </p>
           </div>
 
@@ -182,11 +191,64 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               type="text"
               value={menuSearch}
               onChange={(e) => setMenuSearch(e.target.value)}
-              placeholder="Cari menu (Nameserver, ionCube, Email, File, MySQL)..."
+              placeholder="Cari modul (VPS, WHM, DNS, MultiPHP, Email)..."
               className="w-full pl-9 pr-3.5 py-2.5 bg-slate-950 border border-slate-800 focus:border-sky-500 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none transition-colors"
             />
           </div>
         </div>
+
+        {/* Dedicated Dual-Engine Workspace Switcher (Hosting WHM vs VPS Infrastructure) */}
+        {currentUser.role !== 'client' && (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+            <button
+              type="button"
+              onClick={() => {
+                setEngineWorkspace('unified');
+                setSelectedCategory('all');
+              }}
+              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                engineWorkspace === 'unified'
+                  ? 'bg-sky-600 text-white border-sky-600 shadow-sm'
+                  : 'bg-slate-950/70 text-slate-300 border-slate-800 hover:border-sky-500/40'
+              }`}
+            >
+              <div className="text-xs font-bold">Mode Ekosistem Terpadu</div>
+              <div className="text-[10px] opacity-85 mt-0.5">Tampilkan seluruh modul Hosting WHM &amp; Node VPS</div>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setEngineWorkspace('hosting_only');
+                setSelectedCategory('all');
+              }}
+              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                engineWorkspace === 'hosting_only'
+                  ? 'bg-sky-600 text-white border-sky-600 shadow-sm'
+                  : 'bg-slate-950/70 text-slate-300 border-slate-800 hover:border-sky-500/40'
+              }`}
+            >
+              <div className="text-xs font-bold">Khusus Manajemen Web Hosting</div>
+              <div className="text-[10px] opacity-85 mt-0.5">Fokus WHM, Akun cPanel, Domain, DNS, Email &amp; SQL</div>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setEngineWorkspace('vps_only');
+                setSelectedCategory('all');
+              }}
+              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                engineWorkspace === 'vps_only'
+                  ? 'bg-sky-600 text-white border-sky-600 shadow-sm'
+                  : 'bg-slate-950/70 text-slate-300 border-slate-800 hover:border-sky-500/40'
+              }`}
+            >
+              <div className="text-xs font-bold">Khusus Manajemen Server VPS</div>
+              <div className="text-[10px] opacity-85 mt-0.5">Fokus Hypervisor KVM, Node Fisik, Container &amp; Sistem</div>
+            </button>
+          </div>
+        )}
 
         {/* Interactive Category Filter Bar */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
@@ -650,7 +712,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               className="h-10 px-3.5 bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-[0.98] cursor-pointer"
             >
               <Globe className="w-3.5 h-3.5 shrink-0" />
-              <span className="truncate">+ Instal Website</span>
+              <span className="truncate">Katalog Aplikasi</span>
             </button>
 
             {currentUser.role === 'root' && onOpenSyncModal && (
@@ -660,7 +722,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 className="h-10 px-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-[0.98] cursor-pointer"
               >
                 <ArrowDownToLine className="w-3.5 h-3.5 shrink-0" />
-                <span className="truncate">Update Server</span>
+                <span className="truncate">Sinkronisasi Rilis</span>
               </button>
             )}
 
@@ -671,7 +733,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 className="h-10 px-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-[0.98] cursor-pointer"
               >
                 <Layers className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                <span className="truncate">Uji Peran RBAC</span>
+                <span className="truncate">Manajemen Peran</span>
               </button>
             )}
 
@@ -681,7 +743,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               className="h-10 px-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-[0.98] cursor-pointer"
             >
               <Terminal className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span className="truncate">Terminal SSH</span>
+              <span className="truncate">Konsol Sistem</span>
             </button>
           </div>
         </div>
